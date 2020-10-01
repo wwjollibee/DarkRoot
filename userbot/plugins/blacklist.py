@@ -1,8 +1,8 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-"""Filters
-Available Commands:
+"""Filterlər
+komutlar:
 .addblacklist
 .listblacklist
 .rmblacklist"""
@@ -25,7 +25,7 @@ async def on_new_message(event):
             try:
                 await event.delete()
             except Exception:
-                await event.reply("I do not have DELETE permission in this chat")
+                await event.reply("Bu söhbətdə SİLMƏK icazəm yoxdur")
                 sql.rm_from_blacklist(event.chat_id, snip.lower())
             break
 
@@ -33,7 +33,7 @@ async def on_new_message(event):
 @borg.on(admin_cmd("textblacklist ((.|\n)*)"))
 @borg.on(sudo_cmd("textblacklist ((.|\n)*)", allow_sudo=True))
 async def on_add_black_list(event):
-    starksayxd = await edit_or_reply(event, "Trying To Set This Text As Blacklist xD")
+    starksayxd = await edit_or_reply(event, "Bu mətni qara siyahı xD olaraq təyin etməyə çalışırıq")
     text = event.pattern_match.group(1)
     to_blacklist = list(
         set(trigger.strip() for trigger in text.split("\n") if trigger.strip())
@@ -41,23 +41,23 @@ async def on_add_black_list(event):
     for trigger in to_blacklist:
         sql.add_to_blacklist(event.chat_id, trigger.lower())
     await starksayxd.edit(
-        "Added {} triggers to the blacklist in the current chat".format(
+        "{} cari söhbətdəki qara siyahıya əlavə edildi".format(
             len(to_blacklist)
         )
     )
 
 
-@borg.on(admin_cmd("listblacklist"))
-@borg.on(sudo_cmd("listblacklist", allow_sudo=True))
+@borg.on(admin_cmd("Qara siyahı"))
+@borg.on(sudo_cmd("Qara siyahı", allow_sudo=True))
 async def on_view_blacklist(event):
-    sensibleleecher = await edit_or_reply(event, "Listing Blacklist xD")
+    sensibleleecher = await edit_or_reply(event, "Qara siyahı xD")
     all_blacklisted = sql.get_chat_blacklist(event.chat_id)
-    OUT_STR = "Blacklists in the Current Chat:\n"
+    OUT_STR = "Mövcud Söhbətin Qara Siyahıları:\n"
     if len(all_blacklisted) > 0:
         for trigger in all_blacklisted:
             OUT_STR += f"👉 {trigger} \n"
     else:
-        OUT_STR = "No BlackLists. Start Saving using `.addblacklist`"
+        OUT_STR = "'Qara siyahı yoxdur.Addblacklist istifadə edərək yadda saxlamağa başlayın'"
     if len(OUT_STR) > Config.MAX_MESSAGE_SIZE_LIMIT:
         with io.BytesIO(str.encode(OUT_STR)) as out_file:
             out_file.name = "blacklist.text"
@@ -66,7 +66,7 @@ async def on_view_blacklist(event):
                 out_file,
                 force_document=True,
                 allow_cache=False,
-                caption="BlackLists in the Current Chat",
+                caption="Mövcud Söhbətin Qara Siyahıları",
                 reply_to=event,
             )
             await event.delete()
@@ -77,7 +77,7 @@ async def on_view_blacklist(event):
 @borg.on(admin_cmd("rmblacklist ((.|\n)*)"))
 @borg.on(sudo_cmd("rmblacklist ((.|\n)*)", allow_sudo=True))
 async def on_delete_blacklist(event):
-    sensibleisleecher = await edit_or_reply(event, "Ok Removing This Blacklist xD")
+    sensibleisleecher = await edit_or_reply(event, "Tamam Bu Qara Siyahı XD-nin Silinməsi")
     text = event.pattern_match.group(1)
     to_unblacklist = list(
         set(trigger.strip() for trigger in text.split("\n") if trigger.strip())
@@ -87,5 +87,5 @@ async def on_delete_blacklist(event):
         if sql.rm_from_blacklist(event.chat_id, trigger.lower()):
             successful += 1
     await sensibleisleecher.edit(
-        f"Removed {successful} / {len(to_unblacklist)} from the blacklist"
+        f"Silindi {successful} / {len(to_unblacklist)} qara siyahıdan"
     )

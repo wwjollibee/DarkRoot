@@ -244,7 +244,7 @@ async def _(event):
     if x == 39:
 
         await event.edit(
-            "`\"Kərgədanlar qorunmaq üçün bir buynuz böyütmək üçün inkişaf etdilər, lakin onları məhv etməyə vadar edən şey budur."`"
+            '`"Bəlkə vaxt yolçu tapa bilmirik, çünki hamımız 25-50 ildə ölürük."`'
         )
 
     if x == 40:

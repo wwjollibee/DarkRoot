@@ -155,9 +155,9 @@ async def on_afk(event):
         msg = None
         message_to_reply = (
             f"**Sahibim Afk-dır**  \nAFKT : `{total_afk_time}`\nSəbəb : {reason}"
-            + f"\n\n~~Tezliklə Qayıdacaqdır!~~"
+            + f"\n\n~~Tezliklə Qayıdacaq!~~"
             if reason
-            else f"**Sahibim Afk-dır**\n AFK : `{total_afk_time}` ~~Tezliklə Qayıdacaqdır~~"
+            else f"**Sahibim Afk-dır**\n AFK : `{total_afk_time}` ~~Tezliklə Qayıdacaq~~"
         )
         msg = await event.reply(message_to_reply)
         await asyncio.sleep(5)

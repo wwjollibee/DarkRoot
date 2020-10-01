@@ -1,4 +1,4 @@
-"""AFK Plugin for @FridayOT
+"""AFK Plugin
 Syntax: .afk REASON"""
 import asyncio
 import datetime
@@ -46,16 +46,16 @@ async def _(event):
         USER_AFK = f"yes: {reason}"  # pylint:disable=E0602
         if reason:
             await borg.send_message(
-                event.chat_id, f"**My Master Is Going ** ~~because~~ Of __{reason}__"
+                event.chat_id, f"**Mənim Sahibim Afk-dır ** çünki  __{reason}__"
             )
         else:
-            await borg.send_message(event.chat_id, f"**Bye :) Me Going Afk !**")
+            await borg.send_message(event.chat_id, f"**Bye :) Artıq Afk-yam !**")
         await asyncio.sleep(5)
         await event.delete()
         try:
             await borg.send_message(  # pylint:disable=E0602
                 Config.PRIVATE_GROUP_ID,  # pylint:disable=E0602
-                f"#AfkLogger Afk Is Active And Reason is {reason}",
+                f"#AfkLogger User Afk-dır. Səbəb: {reason}",
             )
         except Exception as e:  # pylint:disable=C0103,W0703
             logger.warn(str(e))  # pylint:disable=E0602
@@ -76,14 +76,14 @@ async def set_not_afk(event):
     if ".afk" not in current_message and "yes" in USER_AFK:  # pylint:disable=E0602
         shite = await borg.send_message(
             event.chat_id,
-            "__Pro is Back Alive__\n**No Longer afk.**\n `I Was afk for:``"
+            "__Boss Geri Qayıtdı__\n**Daha Afk Deyil.**\n `Afk Olduğum Vaxt:``"
             + total_afk_time
             + "`",
         )
         try:
             await borg.send_message(  # pylint:disable=E0602
                 Config.PRIVATE_GROUP_ID,  # pylint:disable=E0602
-                "#AfkLogger User is Back Alive ! No Longer Afk ",
+                "#AfkLogger Boss Geri Qayitdi ! Artiq Afk Deyil ",
             )
         except Exception as e:  # pylint:disable=C0103,W0703
             await borg.send_message(  # pylint:disable=E0602
@@ -154,10 +154,10 @@ async def on_afk(event):
                 f"`{int(seconds)}s` **ago**"
         msg = None
         message_to_reply = (
-            f"**My Master is Afk**  \nAFKT : `{total_afk_time}`\nReason : {reason}"
-            + f"\n\n~~He Will Reply To You Soon!~~"
+            f"**Sahibim Afk-dır**  \nAFKT : `{total_afk_time}`\nSəbəb : {reason}"
+            + f"\n\n~~Tezliklə Qayıdacaqdır!~~"
             if reason
-            else f"**My Master is Afk**\n AFK : `{total_afk_time}` ~~He Will Comeback Soon~~"
+            else f"**Sahibim Afk-dır**\n AFK : `{total_afk_time}` ~~Tezliklə Qayıdacaqdır~~"
         )
         msg = await event.reply(message_to_reply)
         await asyncio.sleep(5)

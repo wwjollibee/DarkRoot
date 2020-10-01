@@ -1,5 +1,5 @@
 ﻿"""Auto Profile Updation Commands
-.autoname"""
+.avto-ad"""
 import asyncio
 import time
 

@@ -35,21 +35,21 @@ from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP
 from userbot.utils import admin_cmd, errors_handler, register, sudo_cmd
 
 # =================== CONSTANT ===================
-PP_TOO_SMOL = "`The image is too small`"
-PP_ERROR = "`Failure while processing the image`"
-NO_ADMIN = "`I am not an admin nub nibba!`"
+PP_TOO_SMOL = "`Görüntü çox kiçikdir`"
+PP_ERROR = "`Təsvir işlənərkən xəta yaşandı`"
+NO_ADMIN = "`Sən admin deyilsən`"
 NO_PERM = (
-    "`I don't have sufficient permissions! This is so sed. Alexa play Tera Baap Aaya`"
+    "`Sən admin deyilsən yada qarşıdakı adamda admindir`"
 )
 NO_SQL = "`Running on Non-SQL mode!`"
 
-CHAT_PP_CHANGED = "`Chat Picture Changed`"
+CHAT_PP_CHANGED = "`Söhbət şəkli dəyişdirildi '"
 CHAT_PP_ERROR = (
-    "`Some issue with updating the pic,`"
-    "`maybe coz I'm not an admin,`"
-    "`or don't have enough rights.`"
+    "`Şəklin yenilənməsi ilə bağlı bəzi problemlər,`"
+    "`Bəlkə sən admin deyiləm?`"
+    "`ya da yetərli hüquqlara sahib deyilsən.`"
 )
-INVALID_MEDIA = "`Invalid Extension`"
+INVALID_MEDIA = "`Yanlış media`"
 
 BANNED_RIGHTS = ChatBannedRights(
     until_date=None,

@@ -519,10 +519,10 @@ async def _(event):
             '`"Yengeç yeyən ilk insanlar, zirehli bir dəniz hörümçəyini yeməyə çalışmaq üçün həqiqətən ac olmuşlar"`'
         )
 
-    if x == 88
-                         
+    if x == 88:
+
         await event.edit(
-            '`"Yengeç yeyən ilk insanlar, zirehli bir dəniz hörümçəyini yeməyə çalışmaq üçün həqiqətən ac olmuşlar"`'
+            '`"Bir şey göndərdikdən sonra beyniniz birdən-birə oxumaqda mükəmməlləşir."`'
         )
 
     if x == 89:

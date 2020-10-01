@@ -24,7 +24,7 @@ EMOJI_PATTERN = re.compile(
 
 
 def deEmojify(inputString: str) -> str:
-    """Remove emojis and other non-safe characters from string"""
+    """Sətirdən emojiləri və digər təhlükəsiz olmayan simvolları silin"""
     return re.sub(EMOJI_PATTERN, "", inputString)
 
 
@@ -32,7 +32,7 @@ def deEmojify(inputString: str) -> str:
 @borg.on(admin_cmd(pattern=r"waifu(?: |$)(.*)"))
 @borg.on(sudo_cmd(pattern=r"waifu(?: |$)(.*)", allow_sudo=True))
 async def waifu(animu):
-    # """Creates random anime sticker!"""
+    # """Təsadüfi stiker yaradır!"""
 
     text = animu.pattern_match.group(1)
     if not text:
@@ -40,7 +40,7 @@ async def waifu(animu):
             text = (await animu.get_reply_message()).message
         else:
             await edit_or_reply(
-                animu, "`You haven't written any article, Waifu is going away.`"
+                animu, "`Heç bir məqalə yazmadın, Waifu işləməyəcək.`"
             )
             return
     animus = [1, 3, 7, 9, 13, 22, 34, 35, 36, 37, 43, 44, 45, 52, 53, 55]
@@ -55,4 +55,4 @@ async def waifu(animu):
     )
     await animu.delete()
 
-    CMD_HELP.update({"waifu": ".waifu : Anime that makes your writing fun."})
+    CMD_HELP.update({"waifu": ".waifu : Yazınızı əyləncəli edən sticker"})

@@ -184,7 +184,7 @@ async def _(event):
     if x == 29:
 
         await event.edit(
-            "`\"Bəzi insanlar varlı olduqları üçün səndən daha yaxşı olduqlarını düşünürlər. Bəzi insanlar kasıb böyüdükləri üçün səndən daha yaxşı olduqlarını düşünürlər."`"
+            "`\"Bəzi insanlar varlı olduqları üçün səndən daha yaxşı olduqlarını düşünürlər. Bəzi insanlar kasıb böyüdükləri üçün səndən daha yaxşı olduqlarını düşünürlər."`'
         )
 
     if x == 30:

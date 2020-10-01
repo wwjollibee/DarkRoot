@@ -1,8 +1,3 @@
-"""BarCode Generator
-Command .barcode (your text)
-By @snappy101
-"""
-
 import asyncio
 import os
 from datetime import datetime
@@ -20,7 +15,7 @@ async def _(event):
     await edit_or_reply(event, "...")
     start = datetime.now()
     input_str = event.pattern_match.group(1)
-    message = "SYNTAX: `.barcode <long text to include>`"
+    message = "SYNTAX: `.barcode <text yapışdırın>`"
     reply_msg_id = event.message.id
     if input_str:
         message = input_str
@@ -42,7 +37,7 @@ async def _(event):
         else:
             message = previous_message.message
     else:
-        message = "SYNTAX: `.barcode <long text to include>`"
+        message = "SYNTAX: `.barcode <text yapışdırın>`"
     bar_code_type = "code128"
     try:
         bar_code_mode_f = barcode.get(bar_code_type, message, writer=ImageWriter())
@@ -59,6 +54,6 @@ async def _(event):
         return
     end = datetime.now()
     ms = (end - start).seconds
-    await edit_or_reply(event, "Created BarCode in {} seconds".format(ms))
+    await edit_or_reply(event, "Barkod yaradıldı {} saniyə".format(ms))
     await asyncio.sleep(5)
     await event.delete()

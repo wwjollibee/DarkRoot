@@ -49,7 +49,7 @@ pm_caption += f"➥ **Versiya** : `{currentversion}`\n"
 pm_caption += f"➥ **Boss** : {DEFAULTUSER} \n"
 pm_caption += "➥ **Heroku verilənlər** : `AWS - Düzgün işləyir`\n\n"
 pm_caption += "➥ **Lisenziya** : [GNU General Public License v3.0](github.com/DarkWebAze/DarkUserbot/blob/master/LICENSE)\n"
-pm_caption += "[🇦🇿DARK USER BOT🇦🇿]"
+pm_caption += "🇦🇿DARK USER BOT🇦🇿"
 
 
 @borg.on(admin_cmd(pattern=r"alive"))

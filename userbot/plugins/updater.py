@@ -19,17 +19,17 @@ IS_SELECTED_DIFFERENT_BRANCH = (
     "please check out to an official branch, and re-start the updater."
 )
 OFFICIAL_UPSTREAM_REPO = "https://github.com/DarkUserBot-Team/DarkRoot"
-BOT_IS_UP_TO_DATE = "`The userbot is up-to-date.\nThank you for Using this Service.`"
+BOT_IS_UP_TO_DATE = "`UserBot Güncəldir.\nTəşəkkür Edirik.`"
 NEW_BOT_UP_DATE_FOUND = (
-    "new update found for {branch_name}\n" "changelog: \n\n{changelog}\n" "updating ..."
+    "yeni güncəlləmə tapıldı: {branch_name}\n" "changelog: \n\n{changelog}\n" "güncəllənir ..."
 )
-NEW_UP_DATE_FOUND = "New update found for {branch_name}\n" "`updating ...`"
+NEW_UP_DATE_FOUND = "yeni güncəlləmə tapıldı: {branch_name}\n" "`güncəllənir ...`"
 REPO_REMOTE_NAME = "temponame"
 IFFUCI_ACTIVE_BRANCH_NAME = "master"
 DIFF_MARKER = "HEAD..{remote_name}/{branch_name}"
 NO_HEROKU_APP_CFGD = "no heroku application found, but a key given? 😕 "
 HEROKU_GIT_REF_SPEC = "HEAD:refs/heads/master"
-RESTARTING_APP = "re-starting heroku application"
+RESTARTING_APP = "Heroku App yenidən başlatılır..."
 # -- Constants End -- #
 
 
@@ -67,7 +67,7 @@ async def updater(message):
     )
 
     if not changelog:
-        await message.edit("`Updation in Progress......`")
+        await message.edit("`Güncəllənir......`")
         await asyncio.sleep(8)
 
     message_one = NEW_BOT_UP_DATE_FOUND.format(
@@ -101,7 +101,7 @@ async def updater(message):
                         heroku_app = i
                 if heroku_app is None:
                     await message.edit(
-                        "Invalid APP Name. Please set the name of your bot in heroku in the var `HEROKU_APP_NAME.`"
+                        "APP Name Yanlışdır. Xaiş Edirik Heroku Vars-da Bunu Düzəldin: `HEROKU_APP_NAME.`"
                     )
                     return
                 heroku_git_url = heroku_app.git_url.replace(
@@ -118,13 +118,13 @@ async def updater(message):
 
             else:
                 await message.edit(
-                    "Please create the var `HEROKU_APP_NAME` as the key and the name of your bot in heroku as your value."
+                    "App Name Yoxdur. Xaiş Edirik Heroku Vars-da Bunu Əlavə edin: `HEROKU_APP_NAME`"
                 )
                 return
         else:
             await message.edit(NO_HEROKU_APP_CFGD)
     else:
-        await message.edit("No heroku api key found in `HEROKU_API_KEY` var")
+        await message.edit("Heroku Api Key Tapılmadı: `HEROKU_API_KEY`")
 
 
 def generate_change_log(git_repo, diff_marker):

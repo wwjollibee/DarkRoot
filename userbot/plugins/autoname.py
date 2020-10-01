@@ -1,5 +1,5 @@
 ﻿"""Auto Profile Updation Commands
-.avto-ad"""
+.autoname"""
 import asyncio
 import time
 
@@ -26,7 +26,7 @@ async def _(event):
 
         HM = time.strftime("%H:%M")
 
-        name = f"⚡{DEFAULTUSER}⚡ 🕒{HM}"
+        name = f"{DEFAULTUSER}| {HM} 🕒"
 
         logger.info(name)
 
@@ -52,10 +52,10 @@ async def _(event):
 
         #     Config.PRIVATE_GROUP_BOT_API_ID,  # pylint:disable=E0602
 
-        #     "Successfully Changed Profile Name"
+        #     "Profil Dəyişdirildi."
 
         # )
 
         await asyncio.sleep(DEL_TIME_OUT)
 
-    await sed.edit(f"Auto Name has been started my Master")
+    await sed.edit(f"Auto Name mənim Sahibim tərəfindən başladı.")

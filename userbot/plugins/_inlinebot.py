@@ -5,7 +5,7 @@ from telethon import custom, events, Button
 from userbot import ALIVE_NAME
 from userbot import CMD_LIST
 
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "Friday"
+DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "Dark"
 if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
 
     @tgbot.on(events.InlineQuery)  # pylint:disable=E0602
@@ -18,18 +18,18 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
             buttons = paginate_help(0, CMD_LIST, "helpme")
             result = builder.article(
                 "© Userbot Help",
-                text="{}\nCurrently Loaded Plugins: {}".format(query, len(CMD_LIST)),
+                text="{}\nYüklənən Pluginlər: {}".format(query, len(CMD_LIST)),
                 buttons=buttons,
                 link_preview=False,
             )
         if event.query.user_id == bot.uid and query == "stats":
            result = builder.article(
-           title="Stats",
-           text=f"**Showing Stats For {DEFAULTUSER}'s Friday** \nNote --> Only Owner Can Check This \n(C) @FridayOT",
+           title="Məlumatlar",
+           text=f"** {DEFAULTUSER}'in Dark Məlumatları** \nNote --> Yalnız Sahib Bunu Yoxlaya Bilər \n(C) @DarkUser_Bot",
            buttons = [
-                   [custom.Button.inline("Show Stats 🚶", data="terminator")],
-                   [Button.url("Repo 🛡️", "https://github.com/StarkGang/FridayUserbot")],
-                   [Button.url("Join Channel 📃", "t.me/Fridayot")],
+                   [custom.Button.inline("Haqqında Göstər 🚶", data="terminator")],
+                   [Button.url("Repo 🛡️", "https://github.com/DarkWebAze/DarkUserBot")],
+                   [Button.url("Join Channel 📃", "t.me/DarkUser_Bot")],
              ]
          )
         await event.answer([result] if result else None)
@@ -45,7 +45,7 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
             # https://t.me/TelethonChat/115200
             await event.edit(buttons=buttons)
         else:
-            reply_popp_up_alert = "Please get your own Userbot, and don't use mine!"
+            reply_popp_up_alert = "Xaiş Edirik Özünüzə DarkUserBot qurun və onu işlədin!"
             await event.answer(reply_popp_up_alert, cache_time=0, alert=True)
 
     @tgbot.on(
@@ -62,7 +62,7 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
             # https://t.me/TelethonChat/115200
             await event.edit(buttons=buttons)
         else:
-            reply_pop_up_alert = "Please get your own Userbot, and don't use mine!"
+            reply_pop_up_alert = "Xaiş Edirik Özünüzə DarkUserBot qurun və onu işlədin!"
             await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
     @tgbot.on(
@@ -84,17 +84,17 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
                 reply_pop_up_alert = "{} is useless".format(plugin_name)
             else:
                 reply_pop_up_alert = help_string
-            reply_pop_up_alert += "\n Use .unload {} to remove this plugin\n\
+            reply_pop_up_alert += "\n Plugini Silmek Üçün {} .unload kodundan istifadə edin\n\
                 © Userbot".format(
                 plugin_name
             )
             try:
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
             except:
-                halps = "Do .help {} to get the list of commands.".format(plugin_name)
+                halps = "Pluginlerin siyahısını {} .help yazaraq görə bilərsiniz.".format(plugin_name)
                 await event.answer(halps, cache_time=0, alert=True)
         else:
-            reply_pop_up_alert = "Please get your own Userbot, and don't use mine!"
+            reply_pop_up_alert = "Xaiş Edirik Özünüzə DarkUserBot qurun və onu işlədin!"
 
     @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"terminator")))
     async def rip(event):
@@ -130,10 +130,10 @@ def paginate_help(page_number, loaded_plugins, prefix):
         ] + [
             (
                 custom.Button.inline(
-                    "Previous", data="{}_prev({})".format(prefix, modulo_page)
+                    "Geri", data="{}_prev({})".format(prefix, modulo_page)
                 ),
                 custom.Button.inline(
-                    "Next", data="{}_next({})".format(prefix, modulo_page)
+                    "İrəli", data="{}_next({})".format(prefix, modulo_page)
                 ),
             )
         ]

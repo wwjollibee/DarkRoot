@@ -153,7 +153,9 @@ async def _(event):
 
     if x == 24:
 
-        await event.edit("`\"Bəzən sakitcə bir qıraqda oturub dünyanı izləmək lazımdı"`")
+        await event.edit(
+            '`"Hamı sizdən çox çalışmağınızı istəyir, amma kimsə nə qədər çalışdığınızı eşitmək istəmir."`'
+        )
 
     if x == 25:
 

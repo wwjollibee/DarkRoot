@@ -142,7 +142,7 @@ async def _(event):
     if x == 22:
 
         await event.edit(
-            "`\"Video oyunlarda hər yerə qaçırıq, çünki gəzməyə çox tənbəlik, amma real həyatda qaçmağa çox tənbəl olduğumuz üçün hər yerdə gəzirik."`"
+            '`"Verdiyiniz hər qərar sizi bu cümləni oxumağa gətirib çıxardı."`'
         )
 
     if x == 23:

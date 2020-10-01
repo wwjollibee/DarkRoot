@@ -10,13 +10,13 @@ from uniborg.util import admin_cmd, edit_or_reply, sudo_cmd
 from userbot import ALIVE_NAME
 
 DEL_TIME_OUT = 60
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "FridayUserbot"
+DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "DarkUserbot"
 
 
 @borg.on(admin_cmd(pattern="autoname"))  # pylint:disable=E0602
 @borg.on(sudo_cmd(pattern="autoname", allow_sudo=True))
 async def _(event):
-    sed = await edit_or_reply(event, "`Starting AutoName Please Wait`")
+    sed = await edit_or_reply(event, "`AutoName başladı.`")
     if event.fwd_from:
         return
 
@@ -26,7 +26,7 @@ async def _(event):
 
         HM = time.strftime("%H:%M")
 
-        name = f"🕒{HM} ⚡{DEFAULTUSER}⚡ 📅{DM}"
+        name = f"⚡{DEFAULTUSER}⚡ 🕒{HM}"
 
         logger.info(name)
 

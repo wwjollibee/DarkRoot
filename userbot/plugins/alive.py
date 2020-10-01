@@ -1,5 +1,5 @@
 """Check if userbot alive. If you change these, you become the gayest gay such that even the gay world will disown you."""
-# CREDITS: @WhySooSerious, @Sur_vivor
+# CREDITS: @GangsterAz, @sekretcelovek
 import time
 from uniborg.util import admin_cmd, sudo_cmd
 from userbot import ALIVE_NAME
@@ -37,27 +37,25 @@ def get_readable_time(seconds: int) -> str:
 
 uptime = get_readable_time((time.time() - Lastupdate))
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "Unknown"
-PM_IMG = "https://telegra.ph/file/22535f8051a58af113586.jpg"
-pm_caption = "➥ **FRIDAY IS:** `ONLINE`\n\n"
-pm_caption += "➥ **SYSTEMS STATS**\n"
-pm_caption += "➥ **Telethon Version:** `1.15.0` \n"
+PM_IMG = "https://telegra.ph/file/3ac99d5d56bbd4074bb17.gif"
+pm_caption = "➥ **DARKUSERBOT:** `IŞLƏYİR`\n\n"
+pm_caption += "➥ **SİSTEM HAQQINDA**\n"
+pm_caption += "➥ **Telethon Versiya:** `1.15.0` \n"
 pm_caption += "➥ **Python:** `3.7.4` \n"
-pm_caption += f"➥ **Uptime** : `{uptime}` \n"
-pm_caption += "➥ **Database Status:**  `Functional`\n"
-pm_caption += "➥ **Current Branch** : `master`\n"
-pm_caption += f"➥ **Version** : `{currentversion}`\n"
+pm_caption += f"➥ **İşləmə zamanı** : `{uptime}` \n"
+pm_caption += "➥ **Verilənlər bazası vəziyyət:**  `Functional`\n"
+pm_caption += "➥ **Hazırkı vəziyyət** : `master`\n"
+pm_caption += f"➥ **Versiya** : `{currentversion}`\n"
 pm_caption += f"➥ **My Boss** : {DEFAULTUSER} \n"
-pm_caption += "➥ **Heroku Database** : `AWS - Working Properly`\n\n"
-pm_caption += "➥ **License** : [GNU General Public License v3.0](github.com/StarkGang/FridayUserbot/blob/master/LICENSE)\n"
-pm_caption += "➥ **Copyright** : By [StarkGang@Github](GitHub.com/StarkGang)\n"
-pm_caption += "➥ **Check Stats By Doing** `.stat`. \n\n"
-pm_caption += "[🇮🇳 Deploy FridayUserbot 🇮🇳](https://telegra.ph/FRIDAY-06-15)"
+pm_caption += "➥ **Heroku verilənlər** : `AWS - Düzgün işləyir`\n\n"
+pm_caption += "➥ **Lisenziya** : [GNU General Public License v3.0](github.com/DarkWebAze/DarkUserbot/blob/master/LICENSE)\n"
+pm_caption += "[🇦🇿DARK USER BOT🇦🇿]"
 
 
 @borg.on(admin_cmd(pattern=r"alive"))
 @borg.on(sudo_cmd(pattern=r"alive", allow_sudo=True))
 async def friday(alive):
     await alive.get_chat()
-    """ For .alive command, check if the bot is running.  """
+    """ Botun işlədiyini .alive kodu ilə yoxlayın.  """
     await borg.send_file(alive.chat_id, PM_IMG, caption=pm_caption)
     await alive.delete()

@@ -46,7 +46,7 @@ async def _(event):
         USER_AFK = f"yes: {reason}"  # pylint:disable=E0602
         if reason:
             await borg.send_message(
-                event.chat_id, f"**Mənim Sahibim Afk-dır ** çünki  __{reason}__"
+                event.chat_id, f"**Mənim Sahibim Afk-dır Çünki {reason}**"
             )
         else:
             await borg.send_message(event.chat_id, f"**Bye :) Artıq Afk-yam !**")
@@ -136,7 +136,7 @@ async def on_afk(event):
             time %= 60
             seconds = time
             if days == 1:
-                afk_since = "**Yesterday**"
+                afk_since = "**DÜNƏN**"
             elif days > 1:
                 if days > 6:
                     date = now + datetime.timedelta(

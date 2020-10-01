@@ -38,7 +38,7 @@ def get_readable_time(seconds: int) -> str:
 uptime = get_readable_time((time.time() - Lastupdate))
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "Unknown"
 PM_IMG = "https://telegra.ph/file/3ac99d5d56bbd4074bb17.gif"
-pm_caption = "➥ **DARKUSERBOT:** `IŞLƏYİR`\n\n"
+pm_caption = "➥ **DARK USER BOT:** `IŞLƏYİR`\n\n"
 pm_caption += "➥ **SİSTEM HAQQINDA**\n"
 pm_caption += "➥ **Telethon Versiya:** `1.15.0` \n"
 pm_caption += "➥ **Python:** `3.7.4` \n"

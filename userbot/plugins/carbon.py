@@ -94,7 +94,7 @@ async def carbon_api(e):
         await e.client.send_file(
             e.chat_id,
             file,
-            caption="Carbon hazırdı\n**Colour Scheme: **`{}`".format(
+            caption="Carbon hazırdı dostum".format(
                 color_name
             ),
             force_document=True,

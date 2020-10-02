@@ -1,7 +1,7 @@
 """ Google Translate
-Available Commands:
-.tr LanguageCode as reply to a message
-.tr LangaugeCode | text to translate"""
+Mövcud Komandalar:
+.tr LanguageCode Tərcümə ediləcək mesajı göstərin.
+.tr LangaugeCode | Tərcümə ediləcək sözü yazın."""
 
 import emoji
 from googletrans import Translator
@@ -25,7 +25,7 @@ async def _(event):
     elif "|" in input_str:
         lan, text = input_str.split("|")
     else:
-        await edit_or_reply(event, "`.tr LanguageCode` as reply to a message")
+        await edit_or_reply(event, "`.tr LanguageCode` Tərcümə ediləcək mesajı göstərin.")
         return
     text = emoji.demojize(text.strip())
     lan = lan.strip()
@@ -35,7 +35,7 @@ async def _(event):
         after_tr_text = translated.text
         # TODO: emojify the :
         # either here, or before translation
-        output_str = """**Translated By FridayUserbot** 
+        output_str = """**DarkUserBot İlə Tərcümə Edildi.** 
          Source **( {} )**
          Translation **( {} )**
          {}""".format(

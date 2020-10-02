@@ -1,5 +1,5 @@
-"""Type `.poto` for get **All profile pics of that User**
-\n Or type `.poto (number)` to get the **desired number of photo of a User** .
+"""Kod: `.sekil`  **Qarşı Şəxsin Bütün Profil Şəklini Atır**
+\n Kod: `.sekil (nömrə)`  **İstənilən Nömrəli Şəkli Atır** .
 """
 
 
@@ -12,14 +12,14 @@ logger = logging.getLogger(__name__)
 
 if 1 == 1:
 
-    name = "Profile Photos"
+    name = "Profil Şəkilləri"
 
     client = borg
 
-    @borg.on(admin_cmd(pattern="poto(.*)"))
+    @borg.on(admin_cmd(pattern="sekil(.*)"))
     async def potocmd(event):
 
-        """Gets the profile photos of replied users, channels or chats"""
+        """Göstərdiyiniz şəxsin profil şəklini alma, kanal vəya qrupda"""
 
         id = "".join(event.raw_text.split(maxsplit=2)[1:])
 
@@ -55,13 +55,13 @@ if 1 == 1:
 
                 if id <= 0:
 
-                    await event.edit("`ID number you entered is invalid`")
+                    await event.edit("`ID nömrəsi səhvdir!`")
 
                     return
 
             except:
 
-                await event.edit("`Are you Comedy Me ?`")
+                await event.edit("`Mənimlə məzələnirsən ?`")
 
                 return
 
@@ -73,6 +73,6 @@ if 1 == 1:
 
             else:
 
-                await event.edit("`No photo found of that Nigga , now u Die`")
+                await event.edit("`Şəkil yoxdu dostum!`")
 
                 return

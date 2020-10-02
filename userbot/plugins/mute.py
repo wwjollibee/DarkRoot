@@ -66,7 +66,7 @@ async def startmute(event):
         except Exception as e:
             await event.edit("Error occured!\nError is " + str(e))
         else:
-            await event.edit("Uğurla o adamın səsini kəsdin.")
+            await event.edit("Uğurla Susduruldu..")
 
 
 @command(outgoing=True, pattern=r"^.unmute ?(\d+)?")
@@ -154,7 +154,7 @@ async def startmute(event):
         except Exception as e:
             await event.edit("Error occured!\nError is " + str(e))
         else:
-            await event.edit("Uğurla o adamın səsini kəsdin.")
+            await event.edit("Uğurla Susduruldu.")
 
 
 @command(outgoing=True, pattern=r"^.unmute ?(\d+)?", allow_sudo=True)

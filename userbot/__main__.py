@@ -44,8 +44,8 @@ for name in files:
         load_module(shortname.replace(".py", ""))
 
 
-print("Friday Have Been Installed Successfully !")
-print("You Can Visit @FridayOT For Any Support Or Doubts")
+print("Dark User Bot Uğurla Yükləndi !")
+print("Daha Çox Məlumat Üçün @Dark_UserBot")
 
 if len(argv) not in (1, 3, 4):
     bot.disconnect()

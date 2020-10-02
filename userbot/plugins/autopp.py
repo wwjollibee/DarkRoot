@@ -1,15 +1,3 @@
-# Copyright (C) 2020 Yusuf Usta.
-#
-# Licensed under the  GPL-3.0 License;
-# you may not use this file except in compliance with the License.
-#
-
-# Asena UserBot - Yusuf Usta
-
-# @NaytSeyd tarafından portlanmıştır.
-# @frknkrc44 tarafından düzenlenmiştir.
-# @Fusuf tarafından AutoVideo yazılmıştır.
-
 import os
 from datetime import datetime
 from PIL import Image, ImageDraw, ImageFont
@@ -24,14 +12,11 @@ import requests
 import time
 from telethon.errors import VideoFileInvalidError
 
-# ██████ LANGUAGE CONSTANTS ██████ #
 
 from userbot.language import get_value
 LANG = get_value("autopp")
 
-# ████████████████████████████████ #
 
-# Before kang; please ask to @fusuf :) #
 @register(outgoing=True, pattern="^.autovideo ?(.*)$")
 async def autovideo(event):
     if 'autovideo' in ASYNC_POOL:
@@ -43,7 +28,6 @@ async def autovideo(event):
     else:
         await event.edit(LANG['SETTING_VIDEO'])
         
-        # Telethon doesn't support download profile-video so ... #
         reply = await event.get_reply_message()
         video = await reply.download_media()
         yazi = event.pattern_match.group(1)
@@ -129,22 +113,17 @@ async def get_font_file(client, channel_id):
     font_file_message_s = await client.get_messages(
         entity=channel_id,
         filter=InputMessagesFilterDocument,
-        # Bu işlem çok fazla kullanıldığında
-        # "FLOOD_WAIT" yapmaya neden olabilir
         limit=None
     )
-    # Yazı tipi listesinden rastgele yazı tipi al
-    # https://docs.python.org/3/library/random.html#random.choice
     font_file_message = random.choice(font_file_message_s)
-    # Dosya yolunu indir ve geri dön
     return await client.download_media(font_file_message)
 
 CMD_HELP.update({
     "autopp": 
     ".autopp \
-    \nKullanım: Bu komut belirlediğiniz fotoğrafı profil resmi yapar \
-    \nve bir saat ekler. Bu saat her dakika değişir. \
-    \nNOT: Küçük bir ihtimal bile olsa ban yeme riskiniz var. Bu yüzden dikkatli kullanın."
+    \nİstifadə: Bu əmr göstərdiyiniz fotonu profil şəkli halına gətirir. \
+    \nvə bir saat əlavə edir. Bu saat hər dəqiqə dəyişir. \
+    \nNOT: K  Qadağan olmağın kiçik bir ehtimalı da var. Buna görə diqqətlə istifadə edin."
 })
 
 CMD_HELP.update({

@@ -3,8 +3,8 @@ import asyncio
 from userbot.utils import admin_cmd
 
 
-# @command(pattern="^.cmds", outgoing=True)
-@borg.on(admin_cmd(pattern=r"cmds"))
+# @command(pattern="^.plist", outgoing=True)
+@borg.on(admin_cmd(pattern=r"plist"))
 async def install(event):
     if event.fwd_from:
         return
@@ -16,5 +16,5 @@ async def install(event):
     o = stdout.decode()
     _o = o.split("\n")
     o = "\n".join(_o)
-    OUTPUT = f"**List of Plugins:**\n - {o}\n\n**HELP:** __If you want to know the commands for a plugin, do:-__ \n `.help <plugin name>` **without the < > brackets.**\n__All plugins might not work directly. Visit__ @FRIDAYSUPPORTOFFICIAL __for assistance.__"
+    OUTPUT = f"**Plugin Siyahısı:**\n - {o}\n\n**HELP:** __Əgər Pluginin Kodlarını Bilmək İstəyirsinizsə, bunu edin:-__ \n `.help <plugin adı>` **mötərizlər < > olmadan.**\n__Pluginlər İşləməyə Bilər. Kömək Üçün__ @DarkUserBot_Support __ziyarət edin.__"
     await event.edit(OUTPUT)

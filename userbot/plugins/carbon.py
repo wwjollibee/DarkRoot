@@ -26,7 +26,7 @@ async def carbon_api(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
 
         """ A Wrapper for carbon.now.sh """
-        await e.edit("`Processing..`")
+        await e.edit("`Başlanılır..`")
         CARBON = "https://carbon.now.sh/?l={lang}&code={code}"
         global CARBONLANG
         textx = await e.get_reply_message()
@@ -42,7 +42,7 @@ async def carbon_api(e):
             pcode = str(textx.message)
             skeme = None  # Importing message to module
         code = quote_plus(pcode)  # Converting to urlencoded
-        await e.edit("`Meking Carbon...\n25%`")
+        await e.edit("`İşlər görülür...\n25%`")
         url = CARBON.format(code=code, lang=CARBONLANG)
         chrome_options = Options()
         chrome_options.add_argument("--headless")
@@ -55,7 +55,7 @@ async def carbon_api(e):
         chrome_options.add_experimental_option("prefs", prefs)
         driver = webdriver.Chrome(executable_path=CHROME_DRIVER, options=chrome_options)
         driver.get(url)
-        await e.edit("`Be Patient...\n50%`")
+        await e.edit("`Az qaldı...\n50%`")
         download_path = "./"
         driver.command_executor._commands["send_command"] = (
             "POST",
@@ -82,19 +82,19 @@ async def carbon_api(e):
         driver.find_element_by_id("export-menu").click()
         driver.find_element_by_xpath("//button[contains(text(),'4x')]").click()
         driver.find_element_by_xpath("//button[contains(text(),'PNG')]").click()
-        await e.edit("`Processing..\n75%`")
+        await e.edit("`Bitmək üzərədir..\n75%`")
         # Waiting for downloading
         sleep(2.5)
         color_name = driver.find_element_by_xpath(
             "/html/body/div[1]/main/div[3]/div[2]/div[1]/div[1]/div/span[2]/input"
         ).get_attribute("value")
-        await e.edit("`Done Dana Done...\n100%`")
+        await e.edit("`Bitti)...\n100%`")
         file = "./carbon.png"
-        await e.edit("`Uploading..`")
+        await e.edit("`Yüklənir..`")
         await e.client.send_file(
             e.chat_id,
             file,
-            caption="<< `Here's your carbon!` \n **Carbonised Using** [Friday](https://github.com/Starkgang/FridayUserbot)>>\n**Colour Scheme: **`{}`".format(
+            caption="`Carbon hazırdı`**Colour Scheme: **`{}`".format(
                 color_name
             ),
             force_document=True,

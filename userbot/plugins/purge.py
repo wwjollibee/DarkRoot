@@ -13,10 +13,10 @@ from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP
 from userbot.utils import errors_handler, register
 
 
-@register(outgoing=True, pattern="^.purge$")
+@register(outgoing=True, pattern="^.sil$")
 @errors_handler
 async def fastpurger(purg):
-    """ For .purge command, purge all messages starting from the reply. """
+    """ Kod: .sil, göstərdiyiniz mesajdan aşağı bütün mesajları silir. """
     chat = await purg.get_input_chat()
     msgs = []
     count = 0
@@ -33,21 +33,21 @@ async def fastpurger(purg):
         await purg.client.delete_messages(chat, msgs)
     done = await purg.client.send_message(
         purg.chat_id,
-        "`Fast purge complete!\n`Purged " + str(count) + " messages.",
+        "`Təmizlik Bitti!\n`Silindi " + str(count) + " mesaj.",
     )
 
     if BOTLOG:
         await purg.client.send_message(
-            BOTLOG_CHATID, "Purge of " + str(count) + " messages done successfully."
+            BOTLOG_CHATID, str(count) + " mesaj uğurla silindi."
         )
     await sleep(2)
     await done.delete()
 
 
-@register(outgoing=True, pattern="^.purgeme")
+@register(outgoing=True, pattern="^.silm")
 @errors_handler
 async def purgeme(delme):
-    """ For .purgeme, delete x count of your latest message."""
+    """ Kod: .silm, sənin x sayda mesajını silir."""
     message = delme.text
     count = int(message[9:])
     i = 1
@@ -60,21 +60,21 @@ async def purgeme(delme):
 
     smsg = await delme.client.send_message(
         delme.chat_id,
-        "`Purge complete!` Purged " + str(count) + " messages.",
+        "`Təmizlik Bitti!` Təmizləndi " + str(count) + " mesaj.",
     )
     if BOTLOG:
         await delme.client.send_message(
-            BOTLOG_CHATID, "Purge of " + str(count) + " messages done successfully."
+            BOTLOG_CHATID, str(count) + " mesaj uğurla silindi."
         )
     await sleep(2)
     i = 1
     await smsg.delete()
 
 
-@register(outgoing=True, pattern="^.del$")
+@register(outgoing=True, pattern="^.s$")
 @errors_handler
 async def delete_it(delme):
-    """ For .del command, delete the replied message. """
+    """ Kod: .s, sadəcə göstərdiyiniz mesajı silir. """
     msg_src = await delme.get_reply_message()
     if delme.reply_to_msg_id:
         try:
@@ -82,12 +82,12 @@ async def delete_it(delme):
             await delme.delete()
             if BOTLOG:
                 await delme.client.send_message(
-                    BOTLOG_CHATID, "Deletion of message was successful"
+                    BOTLOG_CHATID, "Mesaj Uğurla Silindi!"
                 )
         except rpcbaseerrors.BadRequestError:
             if BOTLOG:
                 await delme.client.send_message(
-                    BOTLOG_CHATID, "Well, I can't delete a message"
+                    BOTLOG_CHATID, "Yaxşı, mesajları silə bilmirəm"
                 )
 
 
@@ -129,22 +129,22 @@ async def selfdestruct(destroy):
 
 CMD_HELP.update(
     {
-        "purge": ".purge\
-        \nUsage: Purges all messages starting from the reply."
+        "Sil": ".sil\
+        \nİstifadəsi: Göstərdiyiniz mesajdan aşağıdakı bütün mesajları silir."
     }
 )
 
 CMD_HELP.update(
     {
-        "purgeme": ".purgeme <x>\
-        \nUsage: Deletes x amount of your latest messages."
+        "Silm": ".silm <x>\
+        \nİstifadəsi: Sənin x sayda mesajını silir."
     }
 )
 
 CMD_HELP.update(
     {
-        "del": ".del\
-\nUsage: Deletes the message you replied to."
+        "S": ".s\
+\nİstifadəsi: Sadəcə göstərdiyiniz mesajı silir."
     }
 )
 

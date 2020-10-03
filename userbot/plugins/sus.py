@@ -17,7 +17,7 @@ import asyncio
 from userbot.plugins.sql_helper.mute_sql import is_muted, mute, unmute
 
 
-@command(outgoing=True, pattern=r"^.sus ?(\d+)?")
+@command(outgoing=True, pattern=r"^.mute ?(\d+)?")
 async def startmute(event):
     private = False
     if event.fwd_from:
@@ -69,7 +69,7 @@ async def startmute(event):
             await event.edit("Uğurla Susduruldu..")
 
 
-@command(outgoing=True, pattern=r"^.susma ?(\d+)?")
+@command(outgoing=True, pattern=r"^.unmute ?(\d+)?")
 async def endmute(event):
     private = False
     if event.fwd_from:
@@ -105,7 +105,7 @@ async def endmute(event):
             await event.edit("Artıq istifadəçi bu söhbətdə səssiz deyil")
 
 
-@command(outgoing=True, pattern=r"^.sus ?(\d+)?", allow_sudo=True)
+@command(outgoing=True, pattern=r"^.mute ?(\d+)?", allow_sudo=True)
 async def startmute(event):
     private = False
     if event.fwd_from:
@@ -157,7 +157,7 @@ async def startmute(event):
             await event.edit("Uğurla Susduruldu!")
 
 
-@command(outgoing=True, pattern=r"^.susma ?(\d+)?", allow_sudo=True)
+@command(outgoing=True, pattern=r"^.unmute ?(\d+)?", allow_sudo=True)
 async def endmute(event):
     private = False
     if event.fwd_from:

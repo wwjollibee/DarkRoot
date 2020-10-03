@@ -23,7 +23,7 @@ async def startmute(event):
     if event.fwd_from:
         return
     elif event.is_private:
-        await event.edit("Gözlənilməz problemlər ola bilər!")
+        await event.edit("Unexpected issues or ugly errors may occur!")
         await asyncio.sleep(3)
         private = True
     if any([x in event.raw_text for x in ("/mute", "!mute")]):
@@ -38,7 +38,7 @@ async def startmute(event):
             userid = event.chat_id
         else:
             return await event.edit(
-                "  Xahiş edirəm bir istifadəçiyə cavab verin!"
+                "Please reply to a user or add their userid into the command to mute them."
             )
         chat_id = event.chat_id
         chat = await event.get_chat()
@@ -47,7 +47,7 @@ async def startmute(event):
                 pass
             else:
                 return await event.edit(
-                    "`Mesajlarınızı silmək icazəniz yoxdursa, bir insanı susdura bilməzsiniz!`"
+                    "`You can't mute a person if you dont have delete messages permission. ಥ﹏ಥ`"
                 )
         elif "creator" in vars(chat):
             pass
@@ -55,18 +55,18 @@ async def startmute(event):
             pass
         else:
             return await event.edit(
-                "`Sən admin deyilsən!`  "
+                "`You can't mute a person without admin rights niqq.` ಥ﹏ಥ  "
             )
         if is_muted(userid, chat_id):
             return await event.edit(
-                "Artıq susdurmusan!"
+                "This user is already muted in this chat ~~lmfao sed rip~~"
             )
         try:
             mute(userid, chat_id)
         except Exception as e:
             await event.edit("Error occured!\nError is " + str(e))
         else:
-            await event.edit("Uğurla Susduruldu!")
+            await event.edit("Successfully muted that person.\n**｀-´)⊃━☆ﾟ.*･｡ﾟ **")
 
 
 @command(outgoing=True, pattern=r"^.unmute ?(\d+)?")
@@ -75,7 +75,7 @@ async def endmute(event):
     if event.fwd_from:
         return
     elif event.is_private:
-        await event.edit("Gözlənilməz problemlər ola bilər!")
+        await event.edit("Unexpected issues or ugly errors may occur!")
         await asyncio.sleep(3)
         private = True
     if any([x in event.raw_text for x in ("/unmute", "!unmute")]):
@@ -90,19 +90,19 @@ async def endmute(event):
             userid = event.chat_id
         else:
             return await event.edit(
-                "   Zəhmət olmasa bir istifadəçiyə cavab verin!"
+                "Please reply to a user or add their userid into the command to unmute them."
             )
         chat_id = event.chat_id
         if not is_muted(userid, chat_id):
             return await event.edit(
-                "İstifadəçi bu söhbətdə səssiz deyil!"
+                "__This user is not muted in this chat__\n（ ^_^）o自自o（^_^ ）"
             )
         try:
             unmute(userid, chat_id)
         except Exception as e:
             await event.edit("Error occured!\nError is " + str(e))
         else:
-            await event.edit("Artıq istifadəçi bu söhbətdə səssiz deyil!")
+            await event.edit("Successfully unmuted that person\n乁( ◔ ౪◔)「    ┑(￣Д ￣)┍")
 
 
 @command(outgoing=True, pattern=r"^.mute ?(\d+)?", allow_sudo=True)
@@ -111,7 +111,7 @@ async def startmute(event):
     if event.fwd_from:
         return
     elif event.is_private:
-        await event.edit("Gözlənilməz problemlər ola bilər!")
+        await event.edit("Unexpected issues or ugly errors may occur!")
         await asyncio.sleep(3)
         private = True
     if any([x in event.raw_text for x in ("/mute", "!mute")]):
@@ -126,7 +126,7 @@ async def startmute(event):
             userid = event.chat_id
         else:
             return await event.edit(
-                " Xahiş edirəm bir istifadəçiyə cavab verin!"
+                "Please reply to a user or add their userid into the command to mute them."
             )
         chat_id = event.chat_id
         chat = await event.get_chat()
@@ -135,7 +135,7 @@ async def startmute(event):
                 pass
             else:
                 return await event.edit(
-                    "`Mesajları silmək icazəniz yoxdursa, bir insanın səsini kəsə bilmərsiniz!"
+                    "`You can't mute a person if you dont have delete messages permission. ಥ﹏ಥ`"
                 )
         elif "creator" in vars(chat):
             pass
@@ -143,18 +143,18 @@ async def startmute(event):
             pass
         else:
             return await event.edit(
-                "Admin hüquqları olmadan səsini kəsə bilmərsiniz!"
+                "`You can't mute a person without admin rights niqq.` ಥ﹏ಥ  "
             )
         if is_muted(userid, chat_id):
             return await event.edit(
-                "İstifadəçi bu chatda səssizdədir!"
+                "This user is already muted in this chat ~~lmfao sed rip~~"
             )
         try:
             mute(userid, chat_id)
         except Exception as e:
             await event.edit("Error occured!\nError is " + str(e))
         else:
-            await event.edit("Uğurla Susduruldu!")
+            await event.edit("Successfully muted that person.\n**｀-´)⊃━☆ﾟ.*･｡ﾟ **")
 
 
 @command(outgoing=True, pattern=r"^.unmute ?(\d+)?", allow_sudo=True)
@@ -163,7 +163,7 @@ async def endmute(event):
     if event.fwd_from:
         return
     elif event.is_private:
-        await event.edit("Gözlənilməz problemlər ola bilər!")
+        await event.edit("Unexpected issues or ugly errors may occur!")
         await asyncio.sleep(3)
         private = True
     if any([x in event.raw_text for x in ("/unmute", "!unmute")]):
@@ -178,19 +178,19 @@ async def endmute(event):
             userid = event.chat_id
         else:
             return await event.edit(
-                " Zəhmət olmasa bir istifadəçiyə cavab verin!"
+                "Please reply to a user or add their userid into the command to unmute them."
             )
         chat_id = event.chat_id
         if not is_muted(userid, chat_id):
             return await event.edit(
-                "İstifadəçi bu söhbətdə səssiz deyil!"
+                "__This user is not muted in this chat__\n（ ^_^）o自自o（^_^ ）"
             )
         try:
             unmute(userid, chat_id)
         except Exception as e:
             await event.edit("Error occured!\nError is " + str(e))
         else:
-            await event.edit("Uğurla səssizləşdirilmiş şəxs")
+            await event.edit("Successfully unmuted that person\n乁( ◔ ౪◔)「    ┑(￣Д ￣)┍")
 
 
 @command(incoming=True)
@@ -215,5 +215,5 @@ async def hehehe(event):
             pmpermit_sql.approve(chat.id, "supreme lord ehehe")
             await borg.send_message(
                 chat,
-                "` Bu gələnlər qutusuna ağam xeyir-dua verdi. Özünüzü şanslı hesab edin.",
+                "`This inbox has been blessed by my master. Consider yourself lucky.`\n**Increased Stability and Karma** (づ￣ ³￣)づ",
             )

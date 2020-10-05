@@ -5,7 +5,7 @@ from telethon import custom, events, Button
 from userbot import ALIVE_NAME
 from userbot import CMD_LIST
 
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "DarkUB"
+DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "DarkUserBot"
 if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
 
     @tgbot.on(events.InlineQuery)  # pylint:disable=E0602
@@ -28,7 +28,7 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
            text=f"**Statistikalar göstərilir: {DEFAULTUSER}**",
            buttons = [
                    [custom.Button.inline("Statların", data="terminator")],
-                   [Button.url("Repomuz 🛡️", "http://github.com/DarkUserBot-Team/DarkRoot")],
+                   [Button.url("Repomuz 🛡️", "http://github.com/DarkWebAze/DarkUserBot")],
              ]
          )
         await event.answer([result] if result else None)
@@ -99,7 +99,7 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
                 text = inlinestats
                 await event.answer(text, alert=True)
             else:
-                txt = "Ustadlarımın Statistikasına baxa bilməzsiniz"
+                txt = "Sahibimin Statistikasına baxa bilməzsiniz"
                 await event.answer(txt, alert=True)
                 
 def paginate_help(page_number, loaded_plugins, prefix):

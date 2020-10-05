@@ -14,7 +14,7 @@ gdriveisshit = Config.AUTH_TOKEN_DATA
 wttrapi = Config.OPEN_WEATHER_MAP_APPID
 rmbg = Config.REM_BG_API_KEY
 hmmok = Config.LYDIA_API
-currentversion = "3.0"
+currentversion = "0.1"
 
 if issudousing:
     amiusingsudo = "Active ✅"
@@ -56,7 +56,7 @@ if isdbfine:
 else:
     dbstats = "Not Fine ❌"
 
-inlinestats = (f"✘ SHOWING FRIDAY STATS ✘\n"
+inlinestats = (f"✘ Dark Məlumatlarını Göstər ✘\n"
                f"VERSION = {currentversion} \n"
                f"DATABASE = {dbstats} \n"
                f"SUDO = {amiusingsudo} \n"

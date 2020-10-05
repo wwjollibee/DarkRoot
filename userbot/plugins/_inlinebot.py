@@ -5,7 +5,7 @@ from telethon import custom, events, Button
 from userbot import ALIVE_NAME
 from userbot import CMD_LIST
 
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "Dark"
+DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "DarkUB"
 if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
 
     @tgbot.on(events.InlineQuery)  # pylint:disable=E0602
@@ -13,60 +13,57 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
         builder = event.builder
         result = None
         query = event.text
-        if event.query.user_id == bot.uid and query.startswith("Friday"):
+        if event.query.user_id == bot.uid and query.startswith("DarkUB"):
             rev_text = query[::-1]
-            buttons = paginate_help(0, CMD_LIST, "helpme")
+            buttons = paginate_help(0, CMD_LIST, "kömək")
             result = builder.article(
                 "© Userbot Help",
-                text="{}\nYüklənən Pluginlər: {}".format(query, len(CMD_LIST)),
+                text="{}\nPluginlərin sayı: {}".format(query, len(CMD_LIST)),
                 buttons=buttons,
                 link_preview=False,
             )
-        if event.query.user_id == bot.uid and query == "stats":
+        if query == "Vəziyyət":
            result = builder.article(
-           title="Məlumatlar",
-           text=f"** {DEFAULTUSER}'in Dark Məlumatları** \nNote --> Yalnız Sahib Bunu Yoxlaya Bilər \n(C) @DarkUser_Bot",
+           title="Stats",
+           text=f"**Statistikalar göstərilir: {DEFAULTUSER}**",
            buttons = [
-                   [custom.Button.inline("Haqqında Göstər 🚶", data="terminator")],
-                   [Button.url("Repo 🛡️", "https://github.com/DarkWebAze/DarkUserBot")],
-                   [Button.url("Join Channel 📃", "t.me/DarkUser_Bot")],
+                   [custom.Button.inline("Statların", data="terminator")],
+                   [Button.url("Repomuz 🛡️", "http://github.com/DarkUserBot-Team/DarkRoot")],
              ]
          )
         await event.answer([result] if result else None)
     @tgbot.on(
-        events.callbackquery.CallbackQuery(  # pylint:disable=E0602
+        events.callbackquery.CallbackQuery( 
             data=re.compile(b"helpme_next\((.+?)\)")
         )
     )
     async def on_plug_in_callback_query_handler(event):
-        if event.query.user_id == bot.uid:  # pylint:disable=E0602
+        if event.query.user_id == bot.uid:
             current_page_number = int(event.data_match.group(1).decode("UTF-8"))
-            buttons = paginate_help(current_page_number + 1, CMD_LIST, "helpme")
-            # https://t.me/TelethonChat/115200
+            buttons = paginate_help(current_page_number + 1, CMD_LIST, "help")
             await event.edit(buttons=buttons)
         else:
-            reply_popp_up_alert = "Xaiş Edirik Özünüzə DarkUserBot qurun və onu işlədin!"
+            reply_popp_up_alert = "Please get your own Userbot, and don't use mine!"
             await event.answer(reply_popp_up_alert, cache_time=0, alert=True)
 
     @tgbot.on(
-        events.callbackquery.CallbackQuery(  # pylint:disable=E0602
+        events.callbackquery.CallbackQuery(
             data=re.compile(b"helpme_prev\((.+?)\)")
         )
     )
     async def on_plug_in_callback_query_handler(event):
-        if event.query.user_id == bot.uid:  # pylint:disable=E0602
+        if event.query.user_id == bot.uid:
             current_page_number = int(event.data_match.group(1).decode("UTF-8"))
             buttons = paginate_help(
-                current_page_number - 1, CMD_LIST, "helpme"  # pylint:disable=E0602
+                current_page_number - 1, CMD_LIST, "helpme"
             )
-            # https://t.me/TelethonChat/115200
             await event.edit(buttons=buttons)
         else:
-            reply_pop_up_alert = "Xaiş Edirik Özünüzə DarkUserBot qurun və onu işlədin!"
+            reply_pop_up_alert = "Please get your own Userbot, and don't use mine!"
             await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
     @tgbot.on(
-        events.callbackquery.CallbackQuery(  # pylint:disable=E0602
+        events.callbackquery.CallbackQuery( 
             data=re.compile(b"us_plugin_(.*)")
         )
     )
@@ -81,20 +78,20 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
             except:
                 pass
             if help_string is "":
-                reply_pop_up_alert = "{} is useless".format(plugin_name)
+                reply_pop_up_alert = "{} faydasızdır".format(plugin_name)
             else:
                 reply_pop_up_alert = help_string
-            reply_pop_up_alert += "\n Plugini Silmek Üçün {} .unload kodundan istifadə edin\n\
+            reply_pop_up_alert += "\n Bu plugini silmək üçün .unload {} istifadə edin\n\
                 © Userbot".format(
                 plugin_name
             )
             try:
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
             except:
-                halps = "Pluginlerin siyahısını {} .help yazaraq görə bilərsiniz.".format(plugin_name)
+                halps = "Komutların siyahısını almaq üçün .help {} edin.".format(plugin_name)
                 await event.answer(halps, cache_time=0, alert=True)
         else:
-            reply_pop_up_alert = "Xaiş Edirik Özünüzə DarkUserBot qurun və onu işlədin!"
+            reply_pop_up_alert = "Zəhmət olmasa öz Userbotunu alın və məndən istifadə etməyin!"
 
     @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"terminator")))
     async def rip(event):
@@ -102,11 +99,11 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
                 text = inlinestats
                 await event.answer(text, alert=True)
             else:
-                txt = "Sən Mənim Sahibimin Məlumatlarını Görə Bilməzsən!"
+                txt = "Ustadlarımın Statistikasına baxa bilməzsiniz"
                 await event.answer(txt, alert=True)
                 
 def paginate_help(page_number, loaded_plugins, prefix):
-    number_of_rows = 6
+    number_of_rows = 8
     number_of_cols = 2
     helpable_plugins = []
     for p in loaded_plugins:
@@ -130,10 +127,10 @@ def paginate_help(page_number, loaded_plugins, prefix):
         ] + [
             (
                 custom.Button.inline(
-                    "Geri", data="{}_prev({})".format(prefix, modulo_page)
+                    "Geri", data="{}_Geri({})".format(prefix, modulo_page)
                 ),
                 custom.Button.inline(
-                    "İrəli", data="{}_next({})".format(prefix, modulo_page)
+                    "İrəli", data="{}_İrəli({})".format(prefix, modulo_page)
                 ),
             )
         ]

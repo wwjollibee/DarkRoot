@@ -1,11 +1,3 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-"""
-Userbot module to help you manage a group
-"""
-
 from asyncio import sleep
 from os import remove
 
@@ -35,21 +27,21 @@ from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP
 from userbot.utils import admin_cmd, errors_handler, register, sudo_cmd
 
 # =================== CONSTANT ===================
-PP_TOO_SMOL = "`Görüntü çox kiçikdir`"
-PP_ERROR = "`Təsvir işlənərkən xəta yaşandı`"
-NO_ADMIN = "`Sən admin deyilsən`"
+PP_TOO_SMOL = "`Şəkil çox kiçikdir`"
+PP_ERROR = "`Təsvir işlənərkən uğursuzluq oldu`"
+NO_ADMIN = "`Mən admin deyiləm!`"
 NO_PERM = (
-    "`Sən admin deyilsən yada qarşıdakı adamda admindir`"
+    "`Mənim yetərli icazəm yoxdur! Bu çox azdır.`"
 )
-NO_SQL = "`Running on Non-SQL mode!`"
+NO_SQL = "`Qeyri-SQL rejimində işləyir!`"
 
-CHAT_PP_CHANGED = "`Söhbət şəkli dəyişdirildi '"
+CHAT_PP_CHANGED = "`Söhbət şəkli dəyişdirildi`"
 CHAT_PP_ERROR = (
-    "`Şəklin yenilənməsi ilə bağlı bəzi problemlər,`"
-    "`Bəlkə sən admin deyiləm?`"
+    "`Picin yenilənməsi ilə bağlı bəzi problemlər,`"
+    "`bəlkə mən admin deyilem,`"
     "`ya da yetərli hüquqlara sahib deyilsən.`"
 )
-INVALID_MEDIA = "`Yanlış media`"
+INVALID_MEDIA = "`Yanlış Uzatma`"
 
 BANNED_RIGHTS = ChatBannedRights(
     until_date=None,
@@ -84,9 +76,9 @@ UNMUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=False)
 @borg.on(sudo_cmd(pattern=r"setgpic", allow_sudo=True))
 @errors_handler
 async def set_group_photo(gpic):
-    """ For .setgpic command, changes the picture of a group """
+    """ .Setgpic əmri üçün qrup şəklini dəyişdirir """
     if not gpic.is_group:
-        await gpic.edit("`I don't think this is a group.`")
+        await gpic.edit("`Mən bunun bir qrup olduğunu düşünmürəm.`")
         return
     replymsg = await gpic.get_reply_message()
     chat = await gpic.get_chat()
@@ -156,7 +148,7 @@ async def promote(promt):
     # Try to promote if current user is admin or creator
     try:
         await promt.client(EditAdminRequest(promt.chat_id, user.id, new_rights, rank))
-        await promt.edit("`Promoted Successfully! Now gib Party`")
+        await promt.edit("`Uğurla yüksəldi!`")
 
     # If Telethon spit BadRequestError, assume
     # we don't have Promote permission
@@ -177,7 +169,7 @@ async def promote(promt):
 @borg.on(admin_cmd(pattern=r"demote(?: |$)(.*)"))
 @errors_handler
 async def demote(dmod):
-    """ For .demote command, demotes the replied/tagged person """
+    """ .Demote əmri üçün cavablandırılan / etiketlənmiş şəxsi aşağı salır """
     # Admin right check
     chat = await dmod.get_chat()
     admin = chat.admin_rights
@@ -188,7 +180,7 @@ async def demote(dmod):
         return
 
     # If passing, declare that we're going to demote
-    await dmod.edit("`Demoting...`")
+    await dmod.edit("`Gözləyin...`")
     rank = "admeme"  # dummy rank, lol.
     user = await get_user_from_event(dmod)
     user = user[0]
@@ -215,7 +207,7 @@ async def demote(dmod):
     except BadRequestError:
         await dmod.edit(NO_PERM)
         return
-    await dmod.edit("`Demoted this retard Successfully!`")
+    await dmod.edit("`Bu gecikmə müvəffəqiyyətlə aşağı salındı!`")
 
     # Announce to the logging group if we have demoted successfully
     if BOTLOG:
@@ -230,7 +222,7 @@ async def demote(dmod):
 @borg.on(admin_cmd(pattern=r"ban(?: |$)(.*)"))
 @errors_handler
 async def ban(bon):
-    """ For .ban command, bans the replied/tagged person """
+    """ .Ban əmri üçün cavablandırılan / etiketlənmiş şəxsi qadağan edir """
     # Here laying the sanity check
     chat = await bon.get_chat()
     admin = chat.admin_rights
@@ -248,7 +240,7 @@ async def ban(bon):
         return
 
     # Announce that we're going to whack the pest
-    await bon.edit("`Whacking the pest!`")
+    await bon.edit("`Zərərverici ilə vuruşmaq!`")
 
     try:
         await bon.client(EditBannedRequest(bon.chat_id, user.id, BANNED_RIGHTS))
@@ -261,15 +253,15 @@ async def ban(bon):
         if reply:
             await reply.delete()
     except BadRequestError:
-        await bon.edit("`I dont have message nuking rights! But still he was banned!`")
+        await bon.edit("`Mesaj üçün hüququm yoxdur! Ancaq yenə də qadağan edildi!`")
         return
     # Delete message and then tell that the command
     # is done gracefully
     # Shout out the ID, so that fedadmins can fban later
     if reason:
-        await bon.edit(f"Loser `{str(user.id)}` was banned !!\nReason: {reason}")
+        await bon.edit(f"İtirən `{str(user.id)}` banlandı !!\nReason: Səbəb: {reason}")
     else:
-        await bon.edit(f"Bitch `{str(user.id)}` was banned !!")
+        await bon.edit(f"Rəddol`{str(user.id)}` Banlandı !!")
     # Announce to the logging group if we have banned the person
     # successfully!
     if BOTLOG:
@@ -284,7 +276,7 @@ async def ban(bon):
 @borg.on(admin_cmd(pattern=r"unban(?: |$)(.*)"))
 @errors_handler
 async def nothanos(unbon):
-    """ For .unban command, unbans the replied/tagged person """
+    """ .Unban əmri üçün cavablandırılan / etiketlənmiş şəxsi qadağan edir """
     # Here laying the sanity check
     chat = await unbon.get_chat()
     admin = chat.admin_rights
@@ -307,24 +299,24 @@ async def nothanos(unbon):
 
     try:
         await unbon.client(EditBannedRequest(unbon.chat_id, user.id, UNBAN_RIGHTS))
-        await unbon.edit("```Unbanned Successfully. Granting another chance.```")
+        await unbon.edit("```Uğurla qadağan olunmayıb. Başqa bir şans vermək.```")
 
         if BOTLOG:
             await unbon.client.send_message(
                 BOTLOG_CHATID,
                 "#UNBAN\n"
-                f"USER: [{user.first_name}](tg://user?id={user.id})\n"
-                f"CHAT: {unbon.chat.title}(`{unbon.chat_id}`)",
+                f"İstifadəci: [{user.first_name}](tg://user?id={user.id})\n"
+                f"Çat: {unbon.chat.title}(`{unbon.chat_id}`)",
             )
     except UserIdInvalidError:
-        await unbon.edit("`Uh oh my unban logic broke!`")
+        await unbon.edit("`Aman mənim məntiqim pozuldu!`")
 
 
 @borg.on(admin_cmd(pattern=r"mute(?: |$)(.*)"))
 @errors_handler
 async def spider(spdr):
     """
-    This function is basically muting peeps
+    Bu funksiya əsasən səslərin söndürülməsidir
     """
     # Check if the function running under SQL mode
     try:
@@ -352,22 +344,22 @@ async def spider(spdr):
     self_user = await spdr.client.get_me()
 
     if user.id == self_user.id:
-        await spdr.edit("`Hands too short, can't duct tape myself...\n(ヘ･_･)ヘ┳━┳`")
+        await spdr.edit("`Əllərim çox qısadır, özümü lentə ala bilmirəm)))`")
         return
 
     # If everything goes well, do announcing and mute
     await spdr.edit("`Gets a tape!`")
     if mute(spdr.chat_id, user.id) is False:
-        return await spdr.edit("`Error! User probably already muted.`")
+        return await spdr.edit("`Xəta! Yəqin ki, istifadəçi səssizdir.`")
     else:
         try:
             await spdr.client(EditBannedRequest(spdr.chat_id, user.id, MUTE_RIGHTS))
 
             # Announce that the function is done
             if reason:
-                await spdr.edit(f"`Safely taped !!`\nReason: {reason}")
+                await spdr.edit(f"`Təhlükəsiz bir şəkildə !!`\nSəbəb: {reason}")
             else:
-                await spdr.edit("`Safely taped !!`")
+                await spdr.edit("`Təhlükəsiz bir şəkildə !!`")
 
             # Announce to logging group
             if BOTLOG:

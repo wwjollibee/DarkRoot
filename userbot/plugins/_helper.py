@@ -27,11 +27,7 @@ async def cmd_list(event):
                     string += "\n"
                 await event.edit(string)
             else:
-                await event.edit(input_str + " is not a valid plugin!")
-        else:
-            help_string = """Dark Userbot Modules Are Listed Here !"""
-            results = await bot.inline_query(  # pylint:disable=E0602
-                tgbotusername, help_string
+                await event.edit(input_str + " is not a valid plugin!"
             )
             await results[0].click(
                 event.chat_id, reply_to=event.reply_to_msg_id, hide_via=True

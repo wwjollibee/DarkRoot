@@ -10,7 +10,7 @@ from userbot import ALIVE_NAME, CUSTOM_PMPERMIT
 
 PMPERMIT_PIC = os.environ.get("PMPERMIT_PIC", None)
 if PMPERMIT_PIC is None:
-    WARN_PIC = "https://telegra.ph/file/53aed76a90e38779161b1.jpg"
+    WARN_PIC = "https://telegra.ph/file/d9a852eba50aae2b59ef2.jpg"
 else:
     WARN_PIC = PMPERMIT_PIC
 
@@ -22,13 +22,13 @@ DEFAULTUSER = (
     str(ALIVE_NAME) if ALIVE_NAME else "Set ALIVE_NAME in config vars in Heroku"
 )
 CUSTOM_MIDDLE_PMP = (
-    str(CUSTOM_PMPERMIT) if CUSTOM_PMPERMIT else "Protection By Friday 🇮🇳"
+    str(CUSTOM_PMPERMIT) if CUSTOM_PMPERMIT else "Dark Təhlükəsizlik Sistemi"
 )
-USER_BOT_WARN_ZERO = "You Have Attempted To Spam Masters Inbox So Inorder To Avoid Over Spam , You Have Been Blocked By Userbot"
+USER_BOT_WARN_ZERO = "Siz Mənim Sahibimin Şəxsisini Spam Etdiniz , DarkUserBot Tərəfindən BLOKA ATILDINIZ!!!"
 USER_BOT_NO_WARN = (
-    "**Hello,This is Friday Protection Service ⚠️**\n\n"
-    f"`My Master {DEFAULTUSER} is Busy Right Now !`"
-    "__You May Leave A Request And Wait Till He Approves You.__ \n\n"
+    "**Salam, Bu Dark Təhlükəsizlik Sistemidir ⚠️**\n\n"
+    f"`Mənim Sahibim {DEFAULTUSER} İndi Məşğuldur !`"
+    "__Bir Mesaj Yazıb O, Sizə İcazə Verənə Qədər Gözləyə Bilərsniz.__ \n\n"
     "**Now You Are In Trouble. So Send** `/start` **And Register A Request** \n\n"
     f"**{CUSTOM_MIDDLE_PMP}**"
 )
@@ -52,12 +52,12 @@ if Var.PRIVATE_GROUP_ID is not None:
                     del PREV_REPLY_MESSAGE[chat.id]
                 pmpermit_sql.approve(chat.id, "Approved Another Nibba")
                 await event.edit(
-                    "Approved to pm [{}](tg://user?id={})".format(firstname, chat.id)
+                    "İcazə Verildi: [{}](tg://user?id={})".format(firstname, chat.id)
                 )
                 await asyncio.sleep(3)
                 await event.delete()
 
-    @command(pattern="^.block$")
+    @command(pattern="^.blok$")
     async def approve_p_m(event):
         if event.fwd_from:
             return
@@ -68,7 +68,7 @@ if Var.PRIVATE_GROUP_ID is not None:
             if pmpermit_sql.is_approved(chat.id):
                 pmpermit_sql.disapprove(chat.id)
                 await event.edit(
-                    "Blocked [{}](tg://user?id={})".format(firstname, chat.id)
+                    "Bloklandı! [{}](tg://user?id={})".format(firstname, chat.id)
                 )
                 await asyncio.sleep(3)
                 await event.client(functions.contacts.BlockRequest(chat.id))
@@ -84,11 +84,11 @@ if Var.PRIVATE_GROUP_ID is not None:
             if pmpermit_sql.is_approved(chat.id):
                 pmpermit_sql.disapprove(chat.id)
                 await event.edit(
-                    "Disapproved User [{}](tg://user?id={})".format(firstname, chat.id)
+                    "Şəxs Rədd Edildi! [{}](tg://user?id={})".format(firstname, chat.id)
                 )
                 await event.delete()
 
-    @command(pattern="^.listapproved$")
+    @command(pattern="^.lista$")
     async def approve_p_m(event):
         if event.fwd_from:
             return
@@ -103,7 +103,7 @@ if Var.PRIVATE_GROUP_ID is not None:
                         f"👉 [{a_user.chat_id}](tg://user?id={a_user.chat_id})\n"
                     )
         else:
-            APPROVED_PMs = "no Approved PMs (yet)"
+            APPROVED_PMs = "Təsdiq Edilməyən Şəxs Yoxdur! (hələki)"
         if len(APPROVED_PMs) > 4095:
             with io.BytesIO(str.encode(APPROVED_PMs)) as out_file:
                 out_file.name = "approved.pms.text"
@@ -112,7 +112,7 @@ if Var.PRIVATE_GROUP_ID is not None:
                     out_file,
                     force_document=True,
                     allow_cache=False,
-                    caption="Current Approved PMs",
+                    caption="Təsdiqlənmiş Şəxslər",
                     reply_to=event,
                 )
                 await event.delete()

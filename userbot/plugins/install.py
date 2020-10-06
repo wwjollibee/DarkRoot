@@ -22,14 +22,14 @@ async def install(event):
                 shortname = path1.stem
                 load_module(shortname.replace(".py", ""))
                 await event.edit(
-                    "Friday Has Installed `{}` Sucessfully.".format(
+                    "Dark Plugin: `{}` yükləndi.".format(
                         os.path.basename(downloaded_file_name)
                     )
                 )
             else:
                 os.remove(downloaded_file_name)
                 await event.edit(
-                    "Errors! This plugin is already installed/pre-installed."
+                    "Xəta! Bu plugin yüklüdür!."
                 )
         except Exception as e:  # pylint:disable=C0103,W0703
             await event.edit(str(e))

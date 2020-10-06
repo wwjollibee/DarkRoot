@@ -21,7 +21,7 @@ async def cmd_list(event):
                 await event.edit(string)
         elif input_str:
             if input_str in CMD_LIST:
-                string = "Belə əmr yoxdur {}:\n".format(input_str)
+                string = "Commands found in {}:\n".format(input_str)
                 for i in CMD_LIST[input_str]:
                     string += "    " + i
                     string += "\n"
@@ -29,7 +29,8 @@ async def cmd_list(event):
             else:
                 await event.edit(input_str + " is not a valid plugin!")
         else:
-            help_string = """DarkUserBot plugin menusu !"""
+            help_string = """Dark Userbot Modules Are Listed Here !\n
+For More Help or Support Visit @Dark_UserBot"""
             results = await bot.inline_query(  # pylint:disable=E0602
                 tgbotusername, help_string
             )

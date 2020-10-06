@@ -22,7 +22,7 @@ async def install(event):
                 shortname = path1.stem
                 load_module(shortname.replace(".py", ""))
                 await event.edit(
-                    "Friday Has Installed `{}` Sucessfully.".format(
+                    "Dark Plugin. `{}` Yükləndi.".format(
                         os.path.basename(downloaded_file_name)
                     )
                 )

@@ -24,12 +24,11 @@ DEFAULTUSER = (
 CUSTOM_MIDDLE_PMP = (
     str(CUSTOM_PMPERMIT) if CUSTOM_PMPERMIT else "Dark Təhlükəsizlik Sistemi"
 )
-USER_BOT_WARN_ZERO = "Siz Mənim Sahibimin Şəxsisini Spam Etdiniz , DarkUserBot Tərəfindən BLOKA ATILDINIZ!!!"
+USER_BOT_WARN_ZERO = "Siz Mənim Sahibimin Şəxsisini Spam Etdiniyinizə Görə **DarkUserBot Tərəfindən BLOKA ATILDINIZ**"
 USER_BOT_NO_WARN = (
     "**Salam, Bu Dark Təhlükəsizlik Sistemidir ⚠️**\n\n"
-    f"`Mənim Sahibim {DEFAULTUSER} İndi Məşğuldur !`"
-    "__Bir Mesaj Yazıb O, Sizə İcazə Verənə Qədər Gözləyə Bilərsniz.__ \n\n"
-    "**Now You Are In Trouble. So Send** `/start` **And Register A Request** \n\n"
+    f"`**Mənim Sahibim {DEFAULTUSER} İndi Məşğuldur !**\n\n`"
+    "**Bir Mesaj Yazıb O, Sizə İcazə Verənə Qədər Gözləyin.**\n\n"
     f"**{CUSTOM_MIDDLE_PMP}**"
 )
 
@@ -211,5 +210,4 @@ async def hehehe(event):
         if not pmpermit_sql.is_approved(chat.id):
             pmpermit_sql.approve(chat.id, "**My Boss Is Best🔥**")
             await borg.send_message(
-                chat, "**User Detected As Developer ! Auto Approved**"
-            )
+                chat, "**User Detected A

@@ -26,12 +26,12 @@ CUSTOM_MIDDLE_PMP = (
 )
 USER_BOT_WARN_ZERO = "Siz Mənim Sahibimin Şəxsisini Spam Etdiniyinizə Görə **DarkUserBot Tərəfindən BLOKA ATILDINIZ**"
 USER_BOT_NO_WARN = (
-    "**Salam, Bu Dark Təhlükəsizlik Sistemidir ⚠️**\n\n"
-    f"`**Mənim Sahibim {DEFAULTUSER} İndi Məşğuldur !**\n\n`"
-    "**Bir Mesaj Yazıb O, Sizə İcazə Verənə Qədər Gözləyin.**\n\n"
+    "**Bu Dark Təhlükəsizlik Sistemidir ⚠️**\n\n"
+    f"`Mənim Sahibim {DEFAULTUSER} İndi Məşğuldur !`"
+    "__Xaiş Olunur Spam Etmeyin.__ \n\n"
+    "**Bir Mesaj Yazıb O İcazə Verənə Qədər Gözləyin** \n\n"
     f"**{CUSTOM_MIDDLE_PMP}**"
 )
-
 
 if Var.PRIVATE_GROUP_ID is not None:
 

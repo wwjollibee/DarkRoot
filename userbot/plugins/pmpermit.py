@@ -24,11 +24,11 @@ DEFAULTUSER = (
 CUSTOM_MIDDLE_PMP = (
     str(CUSTOM_PMPERMIT) if CUSTOM_PMPERMIT else "Dark Təhlükəsizlik Sistemi"
 )
-USER_BOT_WARN_ZERO = "Spam mesaji göndərdiyinizə gorə bloklandınız.Sahibimi çox narahat etməyin."
+USER_BOT_WARN_ZERO = "Spam mesaji göndərdiyinizə gorə bloklandınız.Sahibimi narahat etməyin!"
 USER_BOT_NO_WARN = (
     "**Dark Təhlükəsizlik Sistemi ⚠️**\n\n"
     f"`Mənim Sahibim {DEFAULTUSER} Hal-Hazırda burda deyil!`"
-    "Siz Bir İstək Buraxa və sizi təsdiq etməyini gözləyə bilərsiniz. \n\n"
+    "`Siz Bir İstək Buraxa və sizi təsdiq etməyini gözləyə bilərsiniz.`\n\n"
     "**Sahibim sizin mesajiniza qısa müddətdə baxacaqdır** \n\n"
     f"**{CUSTOM_MIDDLE_PMP}**"
 )

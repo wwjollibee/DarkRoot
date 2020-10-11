@@ -26,9 +26,9 @@ CUSTOM_MIDDLE_PMP = (
 )
 USER_BOT_WARN_ZERO = "Spam mesaji göndərdiyinizə gorə bloklandınız.Sahibimi çox narahat etməyin."
 USER_BOT_NO_WARN = (
-    "**Salam, Dark Qoruma Xidmətidir ⚠️**\n\n"
+    "**Dark Təhlükəsizlik Sistemi ⚠️**\n\n"
     f"`Mənim Sahibim {DEFAULTUSER} Hal-Hazırda burda deyil!`"
-    "__Siz Bir İstək Buraxa və sizi təsdiq etməyini gözləyə bilərsiniz .__ \n\n"
+    "Siz Bir İstək Buraxa və sizi təsdiq etməyini gözləyə bilərsiniz. \n\n"
     "**Sahibim sizin mesajiniza qısa müddətdə baxacaqdır** \n\n"
     f"**{CUSTOM_MIDDLE_PMP}**"
 )

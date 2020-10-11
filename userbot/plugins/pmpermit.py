@@ -28,7 +28,7 @@ USER_BOT_WARN_ZERO = "Spam mesaji göndərdiyinizə gorə bloklandınız.Sahibim
 USER_BOT_NO_WARN = (
     "**Dark Təhlükəsizlik Sistemi ⚠️**\n\n"
     f"`Mənim Sahibim {DEFAULTUSER} Hal-Hazırda burda deyil!`"
-    "`Siz Bir İstək Buraxa və sizi təsdiq etməyini gözləyə bilərsiniz.`\n\n"
+    "`Bir İstək Buraxıb və sizi təsdiq etməyini gözləyin.`\n\n"
     "**Sahibim sizin mesajiniza qısa müddətdə baxacaqdır** \n\n"
     f"**{CUSTOM_MIDDLE_PMP}**"
 )

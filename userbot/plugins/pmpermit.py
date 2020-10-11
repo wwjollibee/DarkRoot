@@ -1,7 +1,7 @@
 import asyncio
 import io
 import os
-from userbot.uniborgConfig import Config
+
 from telethon import events, functions
 from telethon.tl.functions.users import GetFullUserRequest
 
@@ -10,26 +10,26 @@ from userbot import ALIVE_NAME, CUSTOM_PMPERMIT
 
 PMPERMIT_PIC = os.environ.get("PMPERMIT_PIC", None)
 if PMPERMIT_PIC is None:
-    WARN_PIC = "https://telegra.ph/file/74444b2dbe2bb29f47a59.jpg"
+    WARN_PIC = "https://telegra.ph/file/d9a852eba50aae2b59ef2.jpg"
 else:
     WARN_PIC = PMPERMIT_PIC
 
 PM_WARNS = {}
 PREV_REPLY_MESSAGE = {}
 
-PM_ON_OFF = Config.PM_DATA
 
 DEFAULTUSER = (
-    str(ALIVE_NAME) if ALIVE_NAME else "Herokuda ALİVE_NAME yazın"
+    str(ALIVE_NAME) if ALIVE_NAME else "Set ALIVE_NAME in config vars in Heroku"
 )
 CUSTOM_MIDDLE_PMP = (
-    str(CUSTOM_PMPERMIT) if CUSTOM_PMPERMIT else "Dark userbot Nəzarət sistemi"
+    str(CUSTOM_PMPERMIT) if CUSTOM_PMPERMIT else "Dark Təhlükəsizlik Sistemi"
 )
-USER_BOT_WARN_ZERO = "Çox mesaj yazdığınıza görə bot tərəfindən bloklandınız!"
+USER_BOT_WARN_ZERO = "Spam etdiyinizə gorə bloklandınız.Sahibimi narahat etməyin!"
 USER_BOT_NO_WARN = (
-    "**Salam. Dark Userbot nəzarət sisteminə xoşgəldiniz**\n\n"
-    f"Mənim Sahibim {DEFAULTUSER} hal-hazırda burda deyil !`"
-    "__Geri gəldiyində sizinlə əlaqə yaratmağı ona deyəcəyəm.__ \n\n"
+    "**Salam, Dark Təhlükəsizlik Sistemidir ⚠️**\n\n"
+    f"`Mənim Sahibim {DEFAULTUSER} Hal-Hazırda burda deyil!`"
+    "__Siz Bir İstək Buraxa və sizi təsdiq etməyini gözləyə bilərsiniz .__ \n\n"
+    "**Sahibim sizin mesajiniza qısa müddətdə baxacaqdır** \n\n"
     f"**{CUSTOM_MIDDLE_PMP}**"
 )
 

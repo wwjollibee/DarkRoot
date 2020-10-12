@@ -21,13 +21,13 @@ async def cmd_list(event):
                 await event.edit(string)
         elif input_str:
             if input_str in CMD_LIST:
-                string = "Belə əmr yoxdur {}:\n".format(input_str)
+                string = "Kod {}:\n".format(input_str)
                 for i in CMD_LIST[input_str]:
                     string += "    " + i
                     string += "\n"
                 await event.edit(string)
             else:
-                await event.edit(input_str + " is not a valid plugin!")
+                await event.edit(input_str + " belə plugin yoxdur!")
         else:
             help_string = """DarkUB Plugin Menusu !"""
             results = await bot.inline_query(  # pylint:disable=E0602

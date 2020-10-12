@@ -30,8 +30,8 @@ async def unload(event):
     shortname = event.pattern_match.group(1)
     try:
         remove_plugin(shortname)
-        await event.edit(f"Uğurla silindi: {shortname}")
+        await event.edit(f"**Uğurla silindi!** {shortname}")
     except Exception as e:
         await event.edit(
-            "Uğurla silindi: {shortname}\n{}".format(shortname, str(e))
+            "**Uğurla silindi!** {shortname}\n{}".format(shortname, str(e))
         )

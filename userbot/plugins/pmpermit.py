@@ -1,7 +1,7 @@
 import asyncio
 import io
 import os
-from userbot.uniborgConfig import Config
+
 from telethon import events, functions
 from telethon.tl.functions.users import GetFullUserRequest
 
@@ -10,26 +10,26 @@ from userbot import ALIVE_NAME, CUSTOM_PMPERMIT
 
 PMPERMIT_PIC = os.environ.get("PMPERMIT_PIC", None)
 if PMPERMIT_PIC is None:
-    WARN_PIC = "https://telegra.ph/file/74444b2dbe2bb29f47a59.jpg"
+    WARN_PIC = "https://telegra.ph/file/d9a852eba50aae2b59ef2.jpg"
 else:
     WARN_PIC = PMPERMIT_PIC
 
 PM_WARNS = {}
 PREV_REPLY_MESSAGE = {}
 
-PM_ON_OFF = Config.PM_DATA
 
 DEFAULTUSER = (
-    str(ALIVE_NAME) if ALIVE_NAME else "Herokuda ALİVE_NAME yazın"
+    str(ALIVE_NAME) if ALIVE_NAME else "Set ALIVE_NAME in config vars in Heroku"
 )
 CUSTOM_MIDDLE_PMP = (
-    str(CUSTOM_PMPERMIT) if CUSTOM_PMPERMIT else "Dark userbot Nəzarət sistemi"
+    str(CUSTOM_PMPERMIT) if CUSTOM_PMPERMIT else "Dark Təhlükəsizlik Sistemi"
 )
-USER_BOT_WARN_ZERO = "Çox mesaj yazdığınıza görə bot tərəfindən bloklandınız!"
+USER_BOT_WARN_ZERO = "Spam mesaji göndərdiyinizə gorə bloklandınız.Sahibimi narahat etməyin!"
 USER_BOT_NO_WARN = (
-    "**Salam. Dark Userbot nəzarət sisteminə xoşgəldiniz**\n\n"
-    f"Mənim Sahibim {DEFAULTUSER} hal-hazırda burda deyil !`"
-    "__Geri gəldiyində sizinlə əlaqə yaratmağı ona deyəcəyəm.__ \n\n"
+    "**Dark Təhlükəsizlik Sistemi ⚠️**\n\n"
+    f"`Mənim Sahibim {DEFAULTUSER} Hal-Hazırda burda deyil!`"
+    "`Bir İstək Buraxıb, sizi təsdiq etməyini gözləyin.`\n\n"
+    " **Sahibim sizin mesajiniza qısa müddətdə baxacaqdır** \n\n"
     f"**{CUSTOM_MIDDLE_PMP}**"
 )
 
@@ -50,14 +50,14 @@ if Var.PRIVATE_GROUP_ID is not None:
                 if chat.id in PREV_REPLY_MESSAGE:
                     await PREV_REPLY_MESSAGE[chat.id].delete()
                     del PREV_REPLY_MESSAGE[chat.id]
-                pmpermit_sql.approve(chat.id, "İcazə verildi!")
+                pmpermit_sql.approve(chat.id, "Təsdiqlənib!")
                 await event.edit(
-                    " [{}](tg://user?id={}) üçün icazə verildi!".format(firstname, chat.id)
+                    "İcazə verildi! [{}](tg://user?id={})".format(firstname, chat.id)
                 )
                 await asyncio.sleep(3)
                 await event.delete()
 
-    @command(pattern="^.block$")
+    @command(pattern="^.blok$")
     async def approve_p_m(event):
         if event.fwd_from:
             return
@@ -68,7 +68,7 @@ if Var.PRIVATE_GROUP_ID is not None:
             if pmpermit_sql.is_approved(chat.id):
                 pmpermit_sql.disapprove(chat.id)
                 await event.edit(
-                    "[{}](tg://user?id={}) bloklandı!".format(firstname, chat.id)
+                    "Bloklandı! [{}](tg://user?id={})".format(firstname, chat.id)
                 )
                 await asyncio.sleep(3)
                 await event.client(functions.contacts.BlockRequest(chat.id))
@@ -84,16 +84,16 @@ if Var.PRIVATE_GROUP_ID is not None:
             if pmpermit_sql.is_approved(chat.id):
                 pmpermit_sql.disapprove(chat.id)
                 await event.edit(
-                    "[{}](tg://user?id={})İ= İcazə geri alındı!".format(firstname, chat.id)
+                    "Şəxs Rədd Edildi! [{}](tg://user?id={})".format(firstname, chat.id)
                 )
                 await event.delete()
 
-    @command(pattern="^.listapproved$")
+    @command(pattern="^.lista$")
     async def approve_p_m(event):
         if event.fwd_from:
             return
         approved_users = pmpermit_sql.get_all_approved()
-        APPROVED_PMs = "İcazə verilənlər PMs\n"
+        APPROVED_PMs = "Təsdiqlənmiş Şəxslər:\n"
         if len(approved_users) > 0:
             for a_user in approved_users:
                 if a_user.reason:
@@ -103,7 +103,7 @@ if Var.PRIVATE_GROUP_ID is not None:
                         f"👉 [{a_user.chat_id}](tg://user?id={a_user.chat_id})\n"
                     )
         else:
-            APPROVED_PMs = "İcazə verilmiyənlər (yet)"
+            APPROVED_PMs = "Təsdiqlənmiş Şəxs Yoxdur (hələki)"
         if len(APPROVED_PMs) > 4095:
             with io.BytesIO(str.encode(APPROVED_PMs)) as out_file:
                 out_file.name = "approved.pms.text"
@@ -112,7 +112,7 @@ if Var.PRIVATE_GROUP_ID is not None:
                     out_file,
                     force_document=True,
                     allow_cache=False,
-                    caption="Hazırkı təsdiqlənmiş icazələr",
+                    caption="Təsdiqlənmiş Şəxslər:",
                     reply_to=event,
                 )
                 await event.delete()
@@ -135,32 +135,40 @@ if Var.PRIVATE_GROUP_ID is not None:
 
         message_text.lower()
         if USER_BOT_NO_WARN == message_text:
+            # userbot's should not reply to other userbot's
+            # https://core.telegram.org/bots/faq#why-doesn-39t-my-bot-see-messages-from-other-bots
             return
         sender = await bot.get_entity(chat_id)
 
         if chat_id == bot.uid:
 
+            # don't log Saved Messages
+
             return
 
         if sender.bot:
+
+            # don't log bots
 
             return
 
         if sender.verified:
 
+            # don't log verified accounts
+
             return
-        
-        if PM_ON_OFF == "Deaktivdir":
+
+        if any([x in event.raw_text for x in ("/start", "1", "2", "3", "4", "5")]):
             return
-        
+
         if not pmpermit_sql.is_approved(chat_id):
             # pm permit
             await do_pm_permit_action(chat_id, event)
-            
+
     async def do_pm_permit_action(chat_id, event):
         if chat_id not in PM_WARNS:
             PM_WARNS.update({chat_id: 0})
-        if PM_WARNS[chat_id] == 3:
+        if PM_WARNS[chat_id] == 5:
             r = await event.reply(USER_BOT_WARN_ZERO)
             await asyncio.sleep(3)
             await event.client(functions.contacts.BlockRequest(chat_id))
@@ -168,9 +176,10 @@ if Var.PRIVATE_GROUP_ID is not None:
                 await PREV_REPLY_MESSAGE[chat_id].delete()
             PREV_REPLY_MESSAGE[chat_id] = r
             the_message = ""
-            the_message += "#bloklanmış PM-lar\n\n"
+            the_message += "#BLOCKED_PMs\n\n"
             the_message += f"[User](tg://user?id={chat_id}): {chat_id}\n"
-            the_message += f"Messaj sayı: {PM_WARNS[chat_id]}\n"
+            the_message += f"Message Count: {PM_WARNS[chat_id]}\n"
+            # the_message += f"Media: {message_media}"
             try:
                 await event.client.send_message(
                     entity=Var.PRIVATE_GROUP_ID,
@@ -200,7 +209,7 @@ async def hehehe(event):
     chat = await event.get_chat()
     if event.is_private:
         if not pmpermit_sql.is_approved(chat.id):
-            pmpermit_sql.approve(chat.id, "**Mənim Sahibim 😎 **")
+            pmpermit_sql.approve(chat.id, "**Mənim Patronum yaxşıdır🔥**")
             await borg.send_message(
-                chat, "**İcazə verildi!**"
+                chat, "**User Detected As Developer ! Auto Approved**"
             )

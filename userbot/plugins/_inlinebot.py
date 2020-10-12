@@ -13,7 +13,7 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
         builder = event.builder
         result = None
         query = event.text
-        if event.query.user_id == bot.uid and query.startswith("DarkUB"):
+        if event.query.user_id == bot.uid and query.startswith("DarkUserBot"):
             rev_text = query[::-1]
             buttons = paginate_help(0, CMD_LIST, "kömək")
             result = builder.article(
@@ -103,7 +103,7 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
                 await event.answer(txt, alert=True)
                 
 def paginate_help(page_number, loaded_plugins, prefix):
-    number_of_rows = 8
+    number_of_rows = 10
     number_of_cols = 2
     helpable_plugins = []
     for p in loaded_plugins:

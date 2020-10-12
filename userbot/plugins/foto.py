@@ -16,7 +16,7 @@ if 1 == 1:
 
     client = borg
 
-    @borg.on(admin_cmd(pattern="sekil(.*)"))
+    @borg.on(admin_cmd(pattern="foto(.*)"))
     async def potocmd(event):
 
         """Göstərdiyiniz şəxsin profil şəklini alma, kanal vəya qrupda"""

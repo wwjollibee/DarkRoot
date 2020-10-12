@@ -28,8 +28,8 @@ USER_BOT_WARN_ZERO = "Spam mesaji göndərdiyinizə gorə bloklandınız.Sahibim
 USER_BOT_NO_WARN = (
     "**Dark Təhlükəsizlik Sistemi ⚠️**\n\n"
     f"`Mənim Sahibim {DEFAULTUSER} Hal-Hazırda burda deyil!`"
-    "`Bir İstək Buraxıb və sizi təsdiq etməyini gözləyin.`\n\n"
-    "**Sahibim sizin mesajiniza qısa müddətdə baxacaqdır** \n\n"
+    "`Bir İstək Buraxıb, sizi təsdiq etməyini gözləyin.`\n\n"
+    " **Sahibim sizin mesajiniza qısa müddətdə baxacaqdır** \n\n"
     f"**{CUSTOM_MIDDLE_PMP}**"
 )
 
@@ -50,14 +50,14 @@ if Var.PRIVATE_GROUP_ID is not None:
                 if chat.id in PREV_REPLY_MESSAGE:
                     await PREV_REPLY_MESSAGE[chat.id].delete()
                     del PREV_REPLY_MESSAGE[chat.id]
-                pmpermit_sql.approve(chat.id, "Approved Another Nibba")
+                pmpermit_sql.approve(chat.id, "Təsdiqlənib!")
                 await event.edit(
                     "İcazə verildi! [{}](tg://user?id={})".format(firstname, chat.id)
                 )
                 await asyncio.sleep(3)
                 await event.delete()
 
-    @command(pattern="^.block$")
+    @command(pattern="^.blok$")
     async def approve_p_m(event):
         if event.fwd_from:
             return
@@ -68,7 +68,7 @@ if Var.PRIVATE_GROUP_ID is not None:
             if pmpermit_sql.is_approved(chat.id):
                 pmpermit_sql.disapprove(chat.id)
                 await event.edit(
-                    "Blocked [{}](tg://user?id={})".format(firstname, chat.id)
+                    "Bloklandı! [{}](tg://user?id={})".format(firstname, chat.id)
                 )
                 await asyncio.sleep(3)
                 await event.client(functions.contacts.BlockRequest(chat.id))
@@ -84,16 +84,16 @@ if Var.PRIVATE_GROUP_ID is not None:
             if pmpermit_sql.is_approved(chat.id):
                 pmpermit_sql.disapprove(chat.id)
                 await event.edit(
-                    "Disapproved User [{}](tg://user?id={})".format(firstname, chat.id)
+                    "Şəxs Rədd Edildi! [{}](tg://user?id={})".format(firstname, chat.id)
                 )
                 await event.delete()
 
-    @command(pattern="^.listapproved$")
+    @command(pattern="^.lista$")
     async def approve_p_m(event):
         if event.fwd_from:
             return
         approved_users = pmpermit_sql.get_all_approved()
-        APPROVED_PMs = "Current Approved PMs\n"
+        APPROVED_PMs = "Təsdiqlənmiş Şəxslər:\n"
         if len(approved_users) > 0:
             for a_user in approved_users:
                 if a_user.reason:
@@ -103,7 +103,7 @@ if Var.PRIVATE_GROUP_ID is not None:
                         f"👉 [{a_user.chat_id}](tg://user?id={a_user.chat_id})\n"
                     )
         else:
-            APPROVED_PMs = "no Approved PMs (yet)"
+            APPROVED_PMs = "Təsdiqlənmiş Şəxs Yoxdur (hələki)"
         if len(APPROVED_PMs) > 4095:
             with io.BytesIO(str.encode(APPROVED_PMs)) as out_file:
                 out_file.name = "approved.pms.text"
@@ -112,7 +112,7 @@ if Var.PRIVATE_GROUP_ID is not None:
                     out_file,
                     force_document=True,
                     allow_cache=False,
-                    caption="Current Approved PMs",
+                    caption="Təsdiqlənmiş Şəxslər:",
                     reply_to=event,
                 )
                 await event.delete()

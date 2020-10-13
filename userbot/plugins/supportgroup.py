@@ -1,7 +1,6 @@
 """Emoji
-Available Commands:
+Mövcud Kodlar:
 .support
-Credits to noone
 """
 
 
@@ -10,11 +9,11 @@ import asyncio
 from userbot.utils import admin_cmd
 
 
-@borg.on(admin_cmd("Dark"))
+@borg.on(admin_cmd("dark"))
 async def _(event):
     if event.fwd_from:
         return
-    animation_interval = 0.1
+    animation_interval = 0.3
     animation_ttl = range(0, 36)
     # input_str = event.pattern_match.group(1)
     # if input_str == "support":

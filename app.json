@@ -1,6 +1,6 @@
 {
   "name": "Dark-Userbot",
-  "description": "Ən güvənilən userbot",
+  "description": "Ən güvənilən UserBot",
   "logo": "https://telegra.ph/file/f2de605e72efdb6e282d4.jpg",
   "keywords": [
     "telegram",
@@ -9,8 +9,8 @@
     "telegram-userbot",
     "səmərəlilik"
   ],
-  "repository": "https://github.com/DarkUserBot-Team/DarkRoot",
-  "website": "https://github.com/DarkUserBot-Team/DarkRoot",
+  "repository": "https://github.com/DarkWebAze/DarkUserBot",
+  "website": "https://github.com/DarkWebAze/DarkUserBot",
   "success_url": "https://github.com/DarkUserBot-Team/DarkRoot",
   "env": {
     "ENV": {
@@ -57,7 +57,7 @@
       "required": false
     },
     "GIT_REPO_NAME": {
-      "description": "Repo adınız Nümunə: DarkUserBot-Team/DarkRoot, lakin əvvəl GITHUB_ACCESS_TOKEN qurulmalıdır.Yoxdursa boş saxlayın",
+      "description": "Repo adınız Nümunə: https://github.com/DarkWebAze/DarkUserBot, lakin əvvəl GITHUB_ACCESS_TOKEN qurulmalıdır.Yoxdursa boş saxlayın",
       "value": "",
       "required": false
     },
@@ -71,11 +71,11 @@
       "value": ""
     },
     "HEROKU_APP_NAME": {
-      "description": "TƏn yuxarda app nameni burayada yazın.",
+      "description": "Ən yuxardakı app nameni buraya da yazın.",
       "value": ""
     },
     "TG_BOT_TOKEN_BF_HER": {
-      "description": "@botfather gedin və bot yaradın.Api tokeni buraya yapışdıırın",
+      "description": "@botfather ilə bot yaradın. Api tokeni buraya yapışdıırın",
       "value": ""
     },
     "TG_BOT_USER_NAME_BF_HER": {

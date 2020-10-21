@@ -1,5 +1,5 @@
 
-from userbot import BOT_USERNAME
+from userbot import TG_BOT_USER_NAME_BF_HER
 from userbot.events import register
 
 # ██████ LANGUAGE CONSTANTS ██████ #

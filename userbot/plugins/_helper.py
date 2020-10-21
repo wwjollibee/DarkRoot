@@ -1,5 +1,5 @@
 
-from userbot import TG_BOT_USER_NAME_BF_HER
+from userbot import ALİVE_USERNAME
 from userbot.events import register
 
 # ██████ LANGUAGE CONSTANTS ██████ #
@@ -11,7 +11,7 @@ LANG = get_value("__helpme")
 
 @register(outgoing=True, pattern="^.yard[iı]m|^.help")
 async def yardim(event):
-    tgbotusername = TG_BOT_USER_NAME_BF_HER
+    tgbotusername = ALİVE_USERNAME
     if tgbotusername is not None:
         results = await event.client.inline_query(
             tgbotusername,

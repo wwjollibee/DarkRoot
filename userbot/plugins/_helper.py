@@ -11,7 +11,7 @@ LANG = get_value("__helpme")
 
 @register(outgoing=True, pattern="^.yard[iı]m|^.help")
 async def yardim(event):
-    tgbotusername = BOT_USERNAME
+    tgbotusername = TG_BOT_USER_NAME_BF_HER
     if tgbotusername is not None:
         results = await event.client.inline_query(
             tgbotusername,

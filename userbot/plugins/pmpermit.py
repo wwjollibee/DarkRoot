@@ -29,7 +29,6 @@ USER_BOT_NO_WARN = (
     "☑️ **You have sent a request.** Please wait for an admin to accept it."
 )
 
-
 if Var.PRIVATE_GROUP_ID is not None:
 
     @command(pattern="^.o$")

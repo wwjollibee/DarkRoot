@@ -24,19 +24,15 @@ DEFAULTUSER = (
 CUSTOM_MIDDLE_PMP = (
     str(CUSTOM_PMPERMIT) if CUSTOM_PMPERMIT else "Dark Təhlükəsizlik Sistemi"
 )
-USER_BOT_WARN_ZERO = "Spam mesaji göndərdiyinizə gorə bloklandınız.Sahibimi narahat etməyin!"
+USER_BOT_WARN_ZERO = "🚫 You have attempted to spam Our inbox so inorder to avoid spam, You have been **Blocked** by Userbot"
 USER_BOT_NO_WARN = (
-    "**Dark Təhlükəsizlik Sistemi ⚠️**\n\n"
-    f"`Mənim Sahibim {DEFAULTUSER} Hal-Hazırda burda deyil!`"
-    "`Bir İstək Buraxıb, sizi təsdiq etməyini gözləyin.`\n\n"
-    " **Sahibim sizin mesajiniza qısa müddətdə baxacaqdır** \n\n"
-    f"**{CUSTOM_MIDDLE_PMP}**"
+    "☑️ **You have sent a request.** Please wait for an admin to accept it."
 )
 
 
 if Var.PRIVATE_GROUP_ID is not None:
 
-    @command(pattern="^.a$")
+    @command(pattern="^.o$")
     async def block(event):
         if event.fwd_from:
             return
@@ -52,12 +48,12 @@ if Var.PRIVATE_GROUP_ID is not None:
                     del PREV_REPLY_MESSAGE[chat.id]
                 pmpermit_sql.approve(chat.id, "Təsdiqlənib!")
                 await event.edit(
-                    "İcazə verildi! [{}](tg://user?id={})".format(firstname, chat.id)
+                    "✅ **An admin has accepted your request.** Start your conversation.".format(firstname, chat.id)
                 )
                 await asyncio.sleep(3)
                 await event.delete()
 
-    @command(pattern="^.blok$")
+    @command(pattern="^.block$")
     async def approve_p_m(event):
         if event.fwd_from:
             return
@@ -68,12 +64,12 @@ if Var.PRIVATE_GROUP_ID is not None:
             if pmpermit_sql.is_approved(chat.id):
                 pmpermit_sql.disapprove(chat.id)
                 await event.edit(
-                    "Bloklandı! [{}](tg://user?id={})".format(firstname, chat.id)
+                    "Blocked! [{}](tg://user?id={})".format(firstname, chat.id)
                 )
                 await asyncio.sleep(3)
                 await event.client(functions.contacts.BlockRequest(chat.id))
 
-    @command(pattern="^.da$")
+    @command(pattern="^.'c$")
     async def approve_p_m(event):
         if event.fwd_from:
             return
@@ -84,7 +80,7 @@ if Var.PRIVATE_GROUP_ID is not None:
             if pmpermit_sql.is_approved(chat.id):
                 pmpermit_sql.disapprove(chat.id)
                 await event.edit(
-                    "Şəxs Rədd Edildi! [{}](tg://user?id={})".format(firstname, chat.id)
+                    "❎ **The chat has been closed by an admin.** Thank you!".format(firstname, chat.id)
                 )
                 await event.delete()
 
@@ -103,7 +99,7 @@ if Var.PRIVATE_GROUP_ID is not None:
                         f"👉 [{a_user.chat_id}](tg://user?id={a_user.chat_id})\n"
                     )
         else:
-            APPROVED_PMs = "Təsdiqlənmiş Şəxs Yoxdur (hələki)"
+            APPROVED_PMs = "Approved PMs"
         if len(APPROVED_PMs) > 4095:
             with io.BytesIO(str.encode(APPROVED_PMs)) as out_file:
                 out_file.name = "approved.pms.text"
@@ -112,7 +108,7 @@ if Var.PRIVATE_GROUP_ID is not None:
                     out_file,
                     force_document=True,
                     allow_cache=False,
-                    caption="Təsdiqlənmiş Şəxslər:",
+                    caption="Approved PMs:",
                     reply_to=event,
                 )
                 await event.delete()
